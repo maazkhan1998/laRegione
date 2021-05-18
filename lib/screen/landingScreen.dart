@@ -43,7 +43,9 @@ class _LandingScreenState extends State<LandingScreen> {
             FavoriteScreen(
               rootContext: context,
             ),
-            BookMarkScreen()
+            BookMarkScreen(
+              withAppBar: false,
+            )
           ],
           items: [
             PersistentBottomNavBarItem(

@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../AppTheme.dart';
 import '../AppThemeNotifier.dart';
+import 'bookMarkScreen.dart';
 
 class SocialSearchScreen extends StatefulWidget {
   @override
@@ -88,163 +89,107 @@ class _SocialSearchScreenState extends State<SocialSearchScreen> {
       @required String status,
       bool isActive = false}) {
     return Container(
-      margin: Spacing.top(16),
-      child: InkWell(
-        onTap: () {
-          
-        },
-        child: Row(
-          children: <Widget>[
-            Stack(
-              children: [
-                ClipRRect(
-                  borderRadius:
-                      BorderRadius.all(Radius.circular(MySize.size24)),
-                  child: Image(
-                    image: AssetImage(image),
-                    height: MySize.size44,
-                    width: MySize.size44,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                isActive
-                    ? Positioned(
-                        bottom: 1,
-                        right: 1,
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: customAppTheme.bgLayer1, width: 2),
-                              shape: BoxShape.circle),
-                          child: Container(
-                            width: MySize.size8,
-                            height: MySize.size8,
-                            decoration: BoxDecoration(
-                                color: customAppTheme.colorSuccess,
-                                shape: BoxShape.circle),
-                          ),
-                        ),
-                      )
-                    : Container()
-              ],
-            ),
-            Expanded(
-              child: Container(
-                margin: Spacing.left(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      name,
-                      style: AppTheme.getTextStyle(
-                          themeData.textTheme.bodyText1,
-                          color: themeData.colorScheme.onBackground,
-                          fontWeight: 600),
-                    ),
-                    Text(
-                      status,
-                      style: AppTheme.getTextStyle(themeData.textTheme.caption,
-                          fontSize: 12,
-                          color:
-                              themeData.colorScheme.onBackground.withAlpha(160),
-                          fontWeight: 600),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ),
+        margin: Spacing.top(16),
+        child: InkWell(
+    onTap: ()=> Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_)=>BookMarkScreen(withAppBar: true,)
+        )
+      ),
+    child: Row(
+      children: <Widget>[
+        Stack(
+          children: [
+            ClipRRect(
+              borderRadius:
+                  BorderRadius.all(Radius.circular(MySize.size24)),
+              child: Image(
+                image: AssetImage(image),
+                height: MySize.size44,
+                width: MySize.size44,
+                fit: BoxFit.cover,
               ),
             ),
-            InkWell(
-              onTap: () {
-                setState(() {
-                  _list[index] = !_list[index];
-                });
-              },
-              child: Container(
-                padding: Spacing.fromLTRB(16, 8, 16, 8),
-                decoration: _list[index]
-                    ? BoxDecoration(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(MySize.size6)),
-                        border: Border.all(
-                            color: customAppTheme.bgLayer4, width: 1))
-                    : BoxDecoration(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(MySize.size6)),
-                        color: themeData.colorScheme.primary),
-                child: Text(
-                  _list[index] ? "Following" :"Follow" ,
+            isActive
+                ? Positioned(
+                    bottom: 1,
+                    right: 1,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              color: customAppTheme.bgLayer1, width: 2),
+                          shape: BoxShape.circle),
+                      child: Container(
+                        width: MySize.size8,
+                        height: MySize.size8,
+                        decoration: BoxDecoration(
+                            color: customAppTheme.colorSuccess,
+                            shape: BoxShape.circle),
+                      ),
+                    ),
+                  )
+                : Container()
+          ],
+        ),
+        Expanded(
+          child: Container(
+            margin: Spacing.left(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  name,
+                  style: AppTheme.getTextStyle(
+                      themeData.textTheme.bodyText1,
+                      color: themeData.colorScheme.onBackground,
+                      fontWeight: 600),
+                ),
+                Text(
+                  status,
                   style: AppTheme.getTextStyle(themeData.textTheme.caption,
-                      color: _list[index]
-                          ? themeData.colorScheme.onBackground
-                          : themeData.colorScheme.onPrimary,
-                      fontWeight: 600,
-                      letterSpacing: 0.3),
+                      fontSize: 12,
+                      color:
+                          themeData.colorScheme.onBackground.withAlpha(160),
+                      fontWeight: 600),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget searchRecentItem({@required String image, @required String name, bool isActive = false}) {
-    return Container(
-      child: InkWell(
-        onTap: () {
-          
-        },
-        child: Column(
-          children: <Widget>[
-            Stack(
-              children: [
-                ClipRRect(
-                  borderRadius:
-                      BorderRadius.all(Radius.circular(MySize.size24)),
-                  child: Image(
-                    image: AssetImage(image),
-                    height: MySize.size44,
-                    width: MySize.size44,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                isActive
-                    ? Positioned(
-                        bottom: 1,
-                        right: 1,
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: customAppTheme.bgLayer1, width: 2),
-                              shape: BoxShape.circle),
-                          child: Container(
-                            width: MySize.size8,
-                            height: MySize.size8,
-                            decoration: BoxDecoration(
-                                color: customAppTheme.colorSuccess,
-                                shape: BoxShape.circle),
-                          ),
-                        ),
-                      )
-                    : Container()
               ],
             ),
-            Container(
-              margin: Spacing.top(8),
-              child: Text(
-                name,
-                style: AppTheme.getTextStyle(themeData.textTheme.caption,
-                    letterSpacing: 0,
-                    color: themeData.colorScheme.onBackground,
-                    muted: true,
-                    fontWeight: 500),
-              ),
-            )
-          ],
+          ),
         ),
-      ),
-    );
+        InkWell(
+          onTap: () {
+            setState(() {
+              _list[index] = !_list[index];
+            });
+          },
+          child: Container(
+            padding: Spacing.fromLTRB(16, 8, 16, 8),
+            decoration: _list[index]
+                ? BoxDecoration(
+                    borderRadius:
+                        BorderRadius.all(Radius.circular(MySize.size6)),
+                    border: Border.all(
+                        color: customAppTheme.bgLayer4, width: 1))
+                : BoxDecoration(
+                    borderRadius:
+                        BorderRadius.all(Radius.circular(MySize.size6)),
+                    color: themeData.colorScheme.primary),
+            child: Text(
+              _list[index] ? "Following" :"Follow" ,
+              style: AppTheme.getTextStyle(themeData.textTheme.caption,
+                  color: _list[index]
+                      ? themeData.colorScheme.onBackground
+                      : themeData.colorScheme.onPrimary,
+                  fontWeight: 600,
+                  letterSpacing: 0.3),
+            ),
+          ),
+        )
+      ],
+    ),
+        ),
+      );
   }
 }

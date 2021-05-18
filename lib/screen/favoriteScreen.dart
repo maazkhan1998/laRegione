@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 
 import '../AppTheme.dart';
-import 'ShoppingProductScreen.dart';
+import 'SingleNewsScreen.dart';
 
 class FavoriteScreen extends StatefulWidget {
   final BuildContext rootContext;
@@ -314,10 +314,11 @@ class __ProductListWidgetState extends State<_ProductListWidget> {
         Navigator.push(
             widget.rootContext,
             MaterialPageRoute(
-                builder: (context) => ShoppingProductScreen(
-                      heroTag: key,
-                      image: widget.image,
-                    )));
+                builder: (context) => Scaffold(
+                  body:SingleChildScrollView(
+                    child: SingleNewsScreen(),
+                  )
+                )));
       },
       child: Container(
         decoration: BoxDecoration(

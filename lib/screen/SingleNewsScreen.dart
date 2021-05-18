@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laregione/AppTheme.dart';
+import 'package:laregione/screen/commentScreen.dart';
 import 'package:laregione/utils/Generator.dart';
 import 'package:laregione/utils/SizeConfig.dart';
 import 'package:provider/provider.dart';
@@ -22,34 +23,40 @@ class _SingleNewsScreenState extends State<SingleNewsScreen> {
         customAppTheme = AppTheme.getCustomAppTheme(value.themeMode());
         return  Padding(
                   padding: Spacing.fromLTRB(24, 40, 24, 40),
-                                child: Column(
+                                child: GestureDetector(
+                      onTap: ()=>Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_)=>CommentScreen()
+                        )
+                      ),
+                                                                  child: Column(
                       children: <Widget>[
                           Container(
                             decoration: BoxDecoration(
-                                color: customAppTheme.bgLayer1,
-                                borderRadius: BorderRadius.all(
+                                  color: customAppTheme.bgLayer1,
+                                  borderRadius: BorderRadius.all(
                   Radius.circular(MySize.size24)),
-                                boxShadow: [
-                                  BoxShadow(
+                                  boxShadow: [
+                                    BoxShadow(
                     color:
                         customAppTheme.shadowColor.withAlpha(120),
                     blurRadius: MySize.size24,
                     spreadRadius: MySize.size4)
-                                ]),
+                                  ]),
                             child: Column(
                               children: [
-                                ClipRRect(
-                                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  borderRadius: BorderRadius.all(
+                                  ClipRRect(
+                                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                                    borderRadius: BorderRadius.all(
                     Radius.circular(MySize.size24)),
-                                  child: Image(
+                                    child: Image(
                   image: AssetImage(
                       './assets/images/all/all-l2.jpg'),
+                                    ),
                                   ),
-                                ),
-                                Container(
-                                  padding: Spacing.all(16),
-                                  child: Column(
+                                  Container(
+                                    padding: Spacing.all(16),
+                                    child: Column(
                   children: [
                     Container(
                       child: Text(
@@ -71,12 +78,12 @@ class _SingleNewsScreenState extends State<SingleNewsScreen> {
                         children: [
                           ClipRRect(
                             clipBehavior:
-                                Clip.antiAliasWithSaveLayer,
+                                  Clip.antiAliasWithSaveLayer,
                             borderRadius: BorderRadius.all(
-                                Radius.circular(MySize.size14)),
+                                  Radius.circular(MySize.size14)),
                             child: Image(
                               image: AssetImage(
-                                  './assets/images/avatar-2.jpg'),
+                                    './assets/images/avatar-2.jpg'),
                               height: MySize.size28,
                               width: MySize.size28,
                             ),
@@ -87,43 +94,44 @@ class _SingleNewsScreenState extends State<SingleNewsScreen> {
                           Text(
                             "John smith",
                             style: AppTheme.getTextStyle(
-                                themeData.textTheme.caption,
-                                color: themeData
+                                  themeData.textTheme.caption,
+                                  color: themeData
                   .colorScheme.onBackground,
-                                fontWeight: 600,
-                                xMuted: true),
+                                  fontWeight: 600,
+                                  xMuted: true),
                           ),
                           Expanded(child: Container()),
                           Text(
                             "10 Jan, 2020",
                             style: AppTheme.getTextStyle(
-                                themeData.textTheme.caption,
-                                color: themeData
+                                  themeData.textTheme.caption,
+                                  color: themeData
                   .colorScheme.onBackground,
-                                fontWeight: 500,
-                                xMuted: true),
+                                  fontWeight: 500,
+                                  xMuted: true),
                           ),
                         ],
                         ),
                       ),
                     )
                   ],
+                                    ),
                                   ),
-                                ),
                               ],
                             ),
                           ),
                           Container(
                             margin: Spacing.top(24),
                             child: Text(Generator.getParagraphsText(
-                                paragraph: 4,
-                                words: 30,
-                                noOfNewLine: 2,
-                                withHyphen: false)),
+                                  paragraph: 4,
+                                  words: 30,
+                                  noOfNewLine: 2,
+                                  withHyphen: false)),
                           ),
                           
                       ],
                   ),
+                                ),
                 );
       },
     );
