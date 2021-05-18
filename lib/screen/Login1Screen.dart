@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:laregione/AppTheme.dart';
 import 'package:laregione/screen/ShoppingPasswordScreen.dart';
+import 'package:laregione/screen/landingScreen.dart';
 import 'package:laregione/utils/SizeConfig.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
@@ -158,7 +159,11 @@ class _Login1ScreenState extends State<Login1Screen> {
                                 style: ButtonStyle(
                                     padding: MaterialStateProperty.all(Spacing.xy(16, 0))
                                 ),
-                                onPressed: () {},
+                                onPressed: ()=>Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (_)=>LandingScreen()
+                                  )
+                                ),
                                 child: Text("LOGIN",
                                     style: AppTheme.getTextStyle(
                                         themeData.textTheme.button,
