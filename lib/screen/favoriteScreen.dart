@@ -33,18 +33,15 @@ class _FavoriteScreenState extends State<FavoriteScreen>
     themeData = Theme.of(context);
     return Consumer<AppThemeNotifier>(
       builder: (BuildContext context, AppThemeNotifier value, Widget child) {
-        return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: AppTheme.getThemeFromThemeMode(value.themeMode()),
-            home: SafeArea(
-              child: Scaffold(
-                  resizeToAvoidBottomInset: false,
-                  key: _scaffoldKey,
-                  backgroundColor: themeData.backgroundColor,
-                  endDrawer: _EndDrawer(
-                    scaffoldKey: _scaffoldKey,
-                  ),
-                  body: ListView(
+        return Scaffold(
+                resizeToAvoidBottomInset: false,
+                key: _scaffoldKey,
+                backgroundColor: themeData.backgroundColor,
+                endDrawer: _EndDrawer(
+                  scaffoldKey: _scaffoldKey,
+                ),
+                body: SafeArea(
+                                  child: ListView(
                     padding: EdgeInsets.all(0),
                     children: <Widget>[
                       Container(
@@ -115,8 +112,8 @@ class _FavoriteScreenState extends State<FavoriteScreen>
                             ]),
                       ),
                     ],
-                  )),
-            ));
+                  ),
+                ));
       },
     );
   }

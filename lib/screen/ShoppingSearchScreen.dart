@@ -34,10 +34,8 @@ class _ShoppingSearchScreenState extends State<ShoppingSearchScreen>
     themeData = Theme.of(context);
     return Consumer<AppThemeNotifier>(
       builder: (BuildContext context, AppThemeNotifier value, Widget child) {
-        return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: AppTheme.getThemeFromThemeMode(value.themeMode()),
-            home: SafeArea(
+        return 
+            SafeArea(
               child: Scaffold(
                   resizeToAvoidBottomInset: false,
                   key: _scaffoldKey,
@@ -117,7 +115,7 @@ class _ShoppingSearchScreenState extends State<ShoppingSearchScreen>
                       ),
                     ],
                   )),
-            ));
+            );
       },
     );
   }

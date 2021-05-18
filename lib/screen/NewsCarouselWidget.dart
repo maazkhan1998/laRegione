@@ -58,10 +58,7 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
     themeData = Theme.of(context);
     return Consumer<AppThemeNotifier>(
       builder: (BuildContext context, AppThemeNotifier value, Widget child) {
-        return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: AppTheme.getThemeFromThemeMode(value.themeMode()),
-            home: SafeArea(
+        return SafeArea(
               top: true,
               child: Scaffold(
                   appBar: AppBar(
@@ -126,7 +123,7 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                       ),
                     ],
                   )),
-            ));
+            );
       },
     );
   }
