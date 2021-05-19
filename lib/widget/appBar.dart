@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laregione/screen/notificationScreen.dart';
 
 customAppBar(BuildContext context,GlobalKey<ScaffoldState> scaffoldKey){
   ThemeData themeData;
@@ -21,7 +22,9 @@ customAppBar(BuildContext context,GlobalKey<ScaffoldState> scaffoldKey){
           ),
           IconButton(
             icon: Icon(Icons.notifications_on_outlined, size: 30),
-            onPressed: () {},
+            onPressed: ()=>Navigator.of(context).push(
+              MaterialPageRoute(builder: (_)=>NotificationDialog())
+            ),
             color: themeData.colorScheme.primary,
           )
         ],
