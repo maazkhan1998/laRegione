@@ -8,6 +8,10 @@ import 'package:provider/provider.dart';
 import '../AppThemeNotifier.dart';
 
 class SingleNewsScreen extends StatefulWidget {
+
+  final String image;
+
+  SingleNewsScreen(this.image);
   @override
   _SingleNewsScreenState createState() => _SingleNewsScreenState();
 }
@@ -46,14 +50,17 @@ class _SingleNewsScreenState extends State<SingleNewsScreen> {
                             child: Column(
                               children: [
                                   ClipRRect(
-                                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                                    borderRadius: BorderRadius.all(
+                                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                                        borderRadius: BorderRadius.all(
                     Radius.circular(MySize.size24)),
-                                    child: Image(
+                                        child: Hero(
+                                          tag: widget.image,
+                                                                                  child: Image(
                   image: AssetImage(
-                      './assets/images/all/all-l2.jpg'),
-                                    ),
-                                  ),
+                      widget.image),
+                                          ),
+                                        ),
+                                      ),
                                   Container(
                                     padding: Spacing.all(16),
                                     child: Column(

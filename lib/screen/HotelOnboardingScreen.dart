@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:laregione/AppTheme.dart';
 import 'package:laregione/AppThemeNotifier.dart';
-import 'package:laregione/screen/Login1Screen.dart';
+import 'package:laregione/screen/ShoppingLoginScreen.dart';
 import 'package:laregione/utils/SizeConfig.dart';
 import 'package:laregione/utils/custom/onBoarding/CustomOnBoardingWidget.dart';
 import 'package:laregione/utils/custom/onBoarding/UI/pages.dart';
@@ -145,7 +145,7 @@ class _HotelOnboardingScreenState extends State<HotelOnboardingScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Login1Screen()));
+                                  builder: (context) => ShoppingLoginScreen()));
                         },
                         child: Container(
                           padding: EdgeInsets.all(8),
@@ -164,7 +164,7 @@ class _HotelOnboardingScreenState extends State<HotelOnboardingScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Login1Screen()));
+                                  builder: (context) => ShoppingLoginScreen()));
                         },
                         child: Container(
                           padding: EdgeInsets.all(8),

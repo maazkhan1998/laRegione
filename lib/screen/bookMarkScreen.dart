@@ -33,7 +33,7 @@ class _BookMarkScreenState extends State<BookMarkScreen> {
       ):null,
       body: ListView.builder(
         itemCount: 3,
-        itemBuilder: (context,i)=>SingleNewsScreen(),
+        itemBuilder: (context,i)=>SingleNewsScreen('./assets/images/all/all-l2.jpg'),
       ),
     );
   }

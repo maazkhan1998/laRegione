@@ -1,6 +1,11 @@
+/*
+* File : Shopping Login
+* Version : 1.0.0
+* */
 import 'package:flutter/material.dart';
 import 'package:laregione/AppTheme.dart';
-import 'package:laregione/screen/ShoppingLoginScreen.dart';
+import 'package:laregione/screen/ShoppingPasswordScreen.dart';
+import 'package:laregione/screen/ShoppingRegisterScreen.dart';
 import 'package:laregione/screen/landingScreen.dart';
 import 'package:laregione/utils/SizeConfig.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -8,14 +13,13 @@ import 'package:provider/provider.dart';
 
 import '../AppThemeNotifier.dart';
 
-
-class ShoppingRegisterScreen extends StatefulWidget {
+class ShoppingLoginScreen extends StatefulWidget {
   @override
-  _ShoppingRegisterScreenState createState() => _ShoppingRegisterScreenState();
+  _ShoppingLoginScreenState createState() => _ShoppingLoginScreenState();
 }
 
-class _ShoppingRegisterScreenState extends State<ShoppingRegisterScreen> {
-   ThemeData themeData;
+class _ShoppingLoginScreenState extends State<ShoppingLoginScreen> {
+  ThemeData themeData;
 
   @override
   Widget build(BuildContext context) {
@@ -39,21 +43,21 @@ class _ShoppingRegisterScreenState extends State<ShoppingRegisterScreen> {
                               margin: EdgeInsets.only(left: MySize.size16, right: MySize.size16),
                               child: Center(
                                 child: Text(
-                                  "Create an Account",
+                                  "Log In",
                                   style: AppTheme.getTextStyle(
                                       themeData.textTheme.headline5,
-                                      fontWeight: 600),
+                                      fontWeight: 700),
                                 ),
                               )),
                           Container(
                             margin:
                                 EdgeInsets.only(left: MySize.size48, right: MySize.size48, top: MySize.size40),
                             child: Text(
-                              "Enter your details to create new your account",
+                              "Enter your login details to access your account",
                               softWrap: true,
                               style: AppTheme.getTextStyle(
-                                  themeData.appBarTheme.textTheme.bodyText1,
-                                  fontWeight: 600,
+                                  themeData.textTheme.bodyText1,
+                                  fontWeight: 500,
                                   height: 1.2,
                                   color: themeData.colorScheme.onBackground
                                       .withAlpha(200)),
@@ -85,35 +89,7 @@ class _ShoppingRegisterScreenState extends State<ShoppingRegisterScreen> {
                                     decoration: InputDecoration(
                                       hintStyle: AppTheme.getTextStyle(
                                           themeData.textTheme.bodyText1,
-                                          fontWeight: 600,
-                                          letterSpacing: 0,
-                                          color: themeData
-                                              .colorScheme.onBackground
-                                              .withAlpha(180)),
-                                      hintText: "Username",
-                                      border: InputBorder.none,
-                                      enabledBorder: InputBorder.none,
-                                      focusedBorder: InputBorder.none,
-                                      isDense: true,
-                                      contentPadding: EdgeInsets.all(16),
-                                    ),
-                                    autofocus: false,
-                                    textCapitalization:
-                                        TextCapitalization.sentences,
-                                  ),
-                                  Divider(
-                                    color: themeData.dividerColor,
-                                    height: 0.5,
-                                  ),
-                                  TextFormField(
-                                    style: AppTheme.getTextStyle(
-                                        themeData.textTheme.bodyText1,
-                                        fontWeight: 600,
-                                        letterSpacing: 0.2),
-                                    decoration: InputDecoration(
-                                      hintStyle: AppTheme.getTextStyle(
-                                          themeData.textTheme.bodyText1,
-                                          fontWeight: 600,
+                                          fontWeight: 500,
                                           letterSpacing: 0,
                                           color: themeData
                                               .colorScheme.onBackground
@@ -123,39 +99,67 @@ class _ShoppingRegisterScreenState extends State<ShoppingRegisterScreen> {
                                       enabledBorder: InputBorder.none,
                                       focusedBorder: InputBorder.none,
                                       isDense: true,
-                                      contentPadding: EdgeInsets.all(16),
+                                      contentPadding: EdgeInsets.all(MySize.size16),
                                     ),
                                     autofocus: false,
                                     keyboardType: TextInputType.emailAddress,
+                                    controller: TextEditingController(
+                                        text: "denio@gmail.com"),
                                   ),
                                   Divider(
                                     color: themeData.dividerColor,
                                     height: 0.5,
                                   ),
-                                  TextFormField(
-                                    style: AppTheme.getTextStyle(
-                                        themeData.textTheme.bodyText1,
-                                        fontWeight: 600,
-                                        letterSpacing: 0.2),
-                                    decoration: InputDecoration(
-                                      hintStyle: AppTheme.getTextStyle(
-                                          themeData.textTheme.bodyText1,
-                                          fontWeight: 600,
-                                          letterSpacing: 0,
-                                          color: themeData
-                                              .colorScheme.onBackground
-                                              .withAlpha(180)),
-                                      hintText: "Your Password",
-                                      border: InputBorder.none,
-                                      enabledBorder: InputBorder.none,
-                                      focusedBorder: InputBorder.none,
-                                      isDense: true,
-                                      contentPadding: EdgeInsets.all(MySize.size16),
-                                    ),
-                                    autofocus: false,
-                                    textCapitalization:
-                                        TextCapitalization.sentences,
-                                    obscureText: true,
+                                  Row(
+                                    children: <Widget>[
+                                      Expanded(
+                                        child: TextFormField(
+                                          style: AppTheme.getTextStyle(
+                                              themeData.textTheme.bodyText1,
+                                              fontWeight: 600,
+                                              letterSpacing: 0.2),
+                                          decoration: InputDecoration(
+                                            hintStyle: AppTheme.getTextStyle(
+                                                themeData.textTheme.bodyText1,
+                                                fontWeight: 500,
+                                                letterSpacing: 0,
+                                                color: themeData
+                                                    .colorScheme.onBackground
+                                                    .withAlpha(180)),
+                                            hintText: "Your Password",
+                                            border: InputBorder.none,
+                                            enabledBorder: InputBorder.none,
+                                            focusedBorder: InputBorder.none,
+                                            isDense: true,
+                                            contentPadding: EdgeInsets.all(MySize.size16),
+                                          ),
+                                          autofocus: false,
+                                          textInputAction:
+                                              TextInputAction.search,
+                                          textCapitalization:
+                                              TextCapitalization.sentences,
+                                          obscureText: true,
+                                        ),
+                                      ),
+                                      TextButton(
+
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ShoppingPasswordScreen()));
+                                        },
+                                        child: Text("FORGOT",
+                                            style: AppTheme.getTextStyle(
+                                                themeData.textTheme.bodyText2,
+                                                letterSpacing: 0.5,
+                                                color: themeData
+                                                    .colorScheme.onBackground
+                                                    .withAlpha(140),
+                                                fontWeight: 700)),
+                                      ),
+                                    ],
                                   )
                                 ],
                               ),
@@ -163,15 +167,15 @@ class _ShoppingRegisterScreenState extends State<ShoppingRegisterScreen> {
                           ),
                           Container(
                               margin:
-                                  EdgeInsets.only(left: MySize.size24, right: MySize.size24, top: MySize.size36),
+                              EdgeInsets.only(left: MySize.size24, right: MySize.size24, top: MySize.size36),
                               child: Container(
                                 decoration: BoxDecoration(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(MySize.size48)),
+                                  BorderRadius.all(Radius.circular(MySize.size48)),
                                   boxShadow: [
                                     BoxShadow(
                                       color:
-                                          themeData.primaryColor.withAlpha(100),
+                                      themeData.colorScheme.primary.withAlpha(100),
                                       blurRadius: 5,
                                       offset: Offset(
                                           0, 5), // changes position of shadow
@@ -182,11 +186,13 @@ class _ShoppingRegisterScreenState extends State<ShoppingRegisterScreen> {
                                   style: ButtonStyle(
                                       padding: MaterialStateProperty.all(Spacing.xy(16, 0))
                                   ),
-                                  onPressed: ()=>Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (_)=>LandingScreen()
-                                  )
-                                ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                LandingScreen()));
+                                  },
                                   child: Stack(
                                     clipBehavior: Clip.none, alignment: Alignment.center,
                                     children: <Widget>[
@@ -227,17 +233,17 @@ class _ShoppingRegisterScreenState extends State<ShoppingRegisterScreen> {
                               )),
                           GestureDetector(
                             onTap: () {
-                              Navigator.pushReplacement(
+                              Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          ShoppingLoginScreen()));
+                                          ShoppingRegisterScreen()));
                             },
                             child: Container(
                               margin: EdgeInsets.only(top: MySize.size16),
                               child: Center(
                                 child: Text(
-                                  "I have already an account",
+                                  "I haven't an account",
                                   style: AppTheme.getTextStyle(
                                       themeData.textTheme.bodyText2,
                                       decoration: TextDecoration.underline),

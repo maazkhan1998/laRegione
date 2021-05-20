@@ -6,6 +6,7 @@
 import 'package:flutter/material.dart';
 import 'package:laregione/AppTheme.dart';
 import 'package:laregione/AppThemeNotifier.dart';
+import 'package:laregione/widget/my_featured_news_widget.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -76,162 +77,138 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                     ),
                   ),
                   body: Column(
+        children: <Widget>[
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(color: Colors.white),
+              child: PageView(
+                scrollDirection: Axis.vertical,
+                pageSnapping: true,
+                physics: ClampingScrollPhysics(),
+                controller: _pageController,
+                onPageChanged: (int page) {
+                  setState(() {
+                    _currentPage = 0;
+                  });
+                },
+                children: <Widget>[
+                  PageView(
+                    pageSnapping: true,
+                    physics: ClampingScrollPhysics(),
+                    controller: _pageController,
+                    onPageChanged: (int page) {
+                      setState(() {
+                        _currentPage = page;
+                      });
+                    },
                     children: <Widget>[
-                      Expanded(
-                        child: Container(
-                          child: PageView(
-                            pageSnapping: true,
-                            physics: ClampingScrollPhysics(),
-                            controller: _pageController,
-                            onPageChanged: (int page) {
-                              setState(() {
-                                _currentPage = page;
-                              });
-                            },
-                            children: <Widget>[
-                              _SingleNewsPage(
-                                image: './assets/images/all/all-p1.jpg',
-                                title: "What happened at MOUNTAIN?",
-                                date: "June 18, 2020",
-                                description: _newsContent,
-                                view: 290,
-                              ),
-                              _SingleNewsPage(
-                                image: './assets/images/all/all-p2.jpg',
-                                title: "What happened under SEA?",
-                                date: "April 12, 2020",
-                                description: _newsContent,
-                                view: 3481,
-                              ),
-                              _SingleNewsPage(
-                                image: './assets/images/all/all-p3.jpg',
-                                title: "What happened at CUBA?",
-                                date: "Feb 14, 2020",
-                                description: _newsContent,
-                                view: 4852,
-                              ),
-                            ],
-                          ),
-                        ),
+                      MyFeaturedNewsWidget(
+                        image: './assets/images/all/all-p1.jpg',
+                        title: "News 1 Group 1",
+                        date: "June 18, 2020",
+                        description: _newsContent,
+                        view: 290,
                       ),
-                      Container(
-                        padding: EdgeInsets.only(bottom: 16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: _buildPageIndicatorStatic(),
-                        ),
+                      MyFeaturedNewsWidget(
+                        image: './assets/images/all/all-p2.jpg',
+                        title: "News 2 Group 1",
+                        date: "April 12, 2020",
+                        description: _newsContent,
+                        view: 3481,
+                      ),
+                      MyFeaturedNewsWidget(
+                        image: './assets/images/all/all-p3.jpg',
+                        title: "News 3 Group 1",
+                        date: "Feb 14, 2020",
+                        description: _newsContent,
+                        view: 4852,
                       ),
                     ],
-                  )),
-            );
-      },
-    );
-  }
-}
+                  ),
 
-class _SingleNewsPage extends StatelessWidget {
-  final String image, date, title, description;
-  final int view;
-
-  const _SingleNewsPage(
-      {Key key,
-      @required this.image,
-      @required this.date,
-      @required this.title,
-      @required this.description,
-      @required this.view})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    ThemeData themeData = Theme.of(context);
-    return Container(
-      padding: EdgeInsets.only(left: 16, right: 16, bottom: 16),
-      child: Card(
-        elevation: 2,
-        margin: EdgeInsets.all(0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Expanded(
-              child: Image(
-                image: AssetImage(image),
-                width: MediaQuery.of(context).size.width,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  PageView(
+                    pageSnapping: true,
+                    physics: ClampingScrollPhysics(),
+                    controller: _pageController,
+                    onPageChanged: (int page) {
+                      setState(() {
+                        _currentPage = page;
+                      });
+                    },
                     children: <Widget>[
-                      Text(date,
-                          style: AppTheme.getTextStyle(
-                              themeData.textTheme.bodyText2,
-                              fontWeight: 700)),
-                      Container(
-                        margin: EdgeInsets.only(top: 16),
-                        child: Text(title,
-                            style: AppTheme.getTextStyle(
-                                themeData.textTheme.headline6,
-                                fontWeight: 700)),
+                      MyFeaturedNewsWidget(
+                        image: './assets/images/all/all-p1.jpg',
+                        title: "News 1 Group 2",
+                        date: "June 18, 2020",
+                        description: _newsContent,
+                        view: 290,
                       ),
-                      Container(
-                        margin: EdgeInsets.only(top: 16),
-                        child: Text(description,
-                            style: AppTheme.getTextStyle(
-                                themeData.textTheme.bodyText2,
-                                fontWeight: 500,
-                                height: 1.2)),
+                      MyFeaturedNewsWidget(
+                        image: './assets/images/all/all-p2.jpg',
+                        title: "News 2 Group 2",
+                        date: "April 12, 2020",
+                        description: _newsContent,
+                        view: 3481,
                       ),
-                      Container(
-                        margin: EdgeInsets.only(top: 8),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: <Widget>[
-                            Container(
-                                margin: EdgeInsets.only(left: 16),
-                                child: Icon(
-                                  MdiIcons.eye,
-                                  color: themeData.colorScheme.onBackground
-                                      .withAlpha(200),
-                                  size: 20,
-                                )),
-                            Container(
-                              margin: EdgeInsets.only(left: 4),
-                              child: Text(view.toString(),
-                                  style: AppTheme.getTextStyle(
-                                      themeData.textTheme.caption,
-                                      fontWeight: 700)),
-                            ),
-                          ],
-                        ),
+                      MyFeaturedNewsWidget(
+                        image: './assets/images/all/all-p3.jpg',
+                        title: "News 3 Group 2",
+                        date: "Feb 14, 2020",
+                        description: _newsContent,
+                        view: 4852,
                       ),
-                      Container(
-                        child: Center(
-                          child: ElevatedButton(
+                    ],
+                  ),
 
-                              onPressed: () {},
-                              child: Text(
-                                "READ MORE",
-                                style: AppTheme.getTextStyle(
-                                    themeData.textTheme.bodyText2,
-                                    fontWeight: 700,
-                                    color: themeData.colorScheme.onPrimary),
-                              )),
-                        ),
-                      )
+                  PageView(
+                    pageSnapping: true,
+                    physics: ClampingScrollPhysics(),
+                    controller: _pageController,
+                    onPageChanged: (int page) {
+                      setState(() {
+                        _currentPage = page;
+                      });
+                    },
+                    children: <Widget>[
+                      MyFeaturedNewsWidget(
+                        image: './assets/images/all/all-p1.jpg',
+                        title: "News 1 Group 3",
+                        date: "June 18, 2020",
+                        description: _newsContent,
+                        view: 290,
+                      ),
+                      MyFeaturedNewsWidget(
+                        image: './assets/images/all/all-p2.jpg',
+                        title: "News 2 Group 3",
+                        date: "April 12, 2020",
+                        description: _newsContent,
+                        view: 3481,
+                      ),
+                      MyFeaturedNewsWidget(
+                        image: './assets/images/all/all-p3.jpg',
+                        title: "News 3 Group 3",
+                        date: "Feb 14, 2020",
+                        description: _newsContent,
+                        view: 4852,
+                      ),
                     ],
                   ),
                 ],
               ),
-            )
-          ],
-        ),
-      ),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(bottom: 16),
+            decoration: BoxDecoration(color: Colors.white),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: _buildPageIndicatorStatic(),
+            ),
+          ),
+        ],
+      )),
+            );
+      },
     );
   }
 }

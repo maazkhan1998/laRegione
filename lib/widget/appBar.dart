@@ -16,11 +16,6 @@ customAppBar(BuildContext context,GlobalKey<ScaffoldState> scaffoldKey){
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.search_outlined, size: 30),
-            onPressed: () {},
-            color: themeData.colorScheme.primary,
-          ),
-          IconButton(
             icon: Icon(Icons.notifications_on_outlined, size: 30),
             onPressed: ()=>Navigator.of(context).push(
               MaterialPageRoute(builder: (_)=>NotificationDialog())

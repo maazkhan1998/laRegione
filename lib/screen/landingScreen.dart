@@ -80,11 +80,11 @@ class _LandingScreenState extends State<LandingScreen> {
                 title: 'Favorties'),
             PersistentBottomNavBarItem(
                 icon: Icon(
-                  MdiIcons.bookmark,
+                  Icons.search_rounded,
                   color: themeData.colorScheme.primary,
                 ),
                 inactiveIcon: Icon(
-                  MdiIcons.bookmarkOutline,
+                  Icons.search_rounded,
                   color: themeData.colorScheme.onBackground,
                 ),
                 title: 'Bookmarks')
