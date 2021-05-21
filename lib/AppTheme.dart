@@ -49,7 +49,7 @@ class AppTheme {
   static TextStyle getTextStyle(TextStyle textStyle,
       {int fontWeight = 500,
       bool muted = false,
-        bool xMuted =false,
+      bool xMuted = false,
       double letterSpacing = 0.15,
       Color color,
       TextDecoration decoration = TextDecoration.none,
@@ -59,12 +59,15 @@ class AppTheme {
     double finalFontSize = fontSize != null ? fontSize : textStyle.fontSize;
 
     Color finalColor;
-    if(color==null){
-      finalColor= xMuted ? textStyle.color.withAlpha(160) : (muted ? textStyle.color.withAlpha(200) : textStyle.color);
-    }else{
-      finalColor = xMuted ? color.withAlpha(160) : ( muted ? color.withAlpha(200) : color);
+    if (color == null) {
+      finalColor = xMuted
+          ? textStyle.color.withAlpha(160)
+          : (muted ? textStyle.color.withAlpha(200) : textStyle.color);
+    } else {
+      finalColor = xMuted
+          ? color.withAlpha(160)
+          : (muted ? color.withAlpha(200) : color);
     }
-
 
     return GoogleFonts.ibmPlexSans(
         fontSize: finalFontSize,
@@ -193,33 +196,64 @@ class AppTheme {
   );
 
   //Color Themes
-  static final ThemeData lightTheme = ThemeData(
+  static final ThemeData defaultTheme = ThemeData(
     brightness: Brightness.light,
-    primaryColor: Color(0xff3d63ff),
-    canvasColor: Colors.transparent,
+    primarySwatch: Colors.orange,
+    primaryColor: Colors.orange,
+    accentColor: Colors.deepOrangeAccent,
+    iconTheme: IconThemeData(color: Colors.grey[900]),
+    //fontFamily: 'Manrope',
+    scaffoldBackgroundColor: Colors.grey[100],
+    primaryColorDark: Colors.grey[800],
+    primaryColorLight: Colors.white,
+    secondaryHeaderColor: Colors.grey[600],
+    shadowColor: Colors.grey[200],
     backgroundColor: Colors.white,
-    scaffoldBackgroundColor: Color(0xffffffff),
-    appBarTheme: AppBarTheme(
-      textTheme: lightAppBarTextTheme,
-      actionsIconTheme: IconThemeData(
-        color: Color(0xff495057),
-      ),
-      color: Color(0xffffffff),
-      iconTheme: IconThemeData(color: Color(0xff495057), size: 24),
+
+    textTheme: TextTheme(
+      subtitle1: TextStyle(
+          fontWeight: FontWeight.w500, fontSize: 16, color: Colors.grey[900]),
     ),
+
+    /// App bar theme
+    appBarTheme: AppBarTheme(
+      brightness: Brightness.light,
+      color: Colors.white,
+      elevation: 0,
+      iconTheme: IconThemeData(
+        color: Colors.grey[900],
+      ),
+      actionsIconTheme: IconThemeData(color: Colors.grey[900]),
+      textTheme: TextTheme(
+        headline6: TextStyle(
+          //fontFamily: 'Manrope',
+          fontSize: 18,
+          fontWeight: FontWeight.w700,
+          color: Colors.grey[900],
+        ),
+      ),
+    ),
+
+    /// Bottom navigation bar theme
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: Colors.white,
+      selectedItemColor: Colors.orange,
+      unselectedItemColor: Colors.grey[500],
+    ),
+    canvasColor: Colors.transparent,
     navigationRailTheme: NavigationRailThemeData(
         selectedIconTheme:
-            IconThemeData(color: Color(0xff3d63ff), opacity: 1, size: 24),
+            IconThemeData(color: Colors.orange, opacity: 1, size: 24),
         unselectedIconTheme:
             IconThemeData(color: Color(0xff495057), opacity: 1, size: 24),
         backgroundColor: Color(0xffffffff),
         elevation: 3,
-        selectedLabelTextStyle: TextStyle(color: Color(0xff3d63ff)),
+        selectedLabelTextStyle: TextStyle(color: Colors.orange),
         unselectedLabelTextStyle: TextStyle(color: Color(0xff495057))),
     colorScheme: ColorScheme.light(
-        primary: Color(0xff3d63ff),
+        primary: Colors.orange,
         onPrimary: Colors.white,
-        primaryVariant: Color(0xff0055ff),
+        primaryVariant: Colors.deepOrangeAccent,
         secondary: Color(0xff495057),
         secondaryVariant: Color(0xff3cd278),
         onSecondary: Colors.white,
@@ -236,7 +270,7 @@ class AppTheme {
       hintStyle: TextStyle(fontSize: 15, color: Color(0xaa495057)),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(4)),
-        borderSide: BorderSide(width: 1, color: Color(0xff3d63ff)),
+        borderSide: BorderSide(width: 1, color: Colors.orange),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(4)),
@@ -247,25 +281,20 @@ class AppTheme {
           borderSide: BorderSide(width: 1, color: Colors.black54)),
     ),
     splashColor: Colors.white.withAlpha(100),
-    iconTheme: IconThemeData(
-      color: Colors.white,
-    ),
-    textTheme: lightTextTheme,
     indicatorColor: Colors.white,
     disabledColor: Color(0xffdcc7ff),
     highlightColor: Colors.white,
     floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: Color(0xff3d63ff),
+        backgroundColor: Colors.orange,
         splashColor: Colors.white.withAlpha(100),
         highlightElevation: 8,
         elevation: 4,
-        focusColor: Color(0xff3d63ff),
-        hoverColor: Color(0xff3d63ff),
+        focusColor: Colors.orange,
+        hoverColor: Colors.orange,
         foregroundColor: Colors.white),
     dividerColor: Color(0xffd1d1d1),
     errorColor: Color(0xfff0323c),
     cardColor: Colors.white,
-    accentColor: Color(0xff3d63ff),
     popupMenuTheme: PopupMenuThemeData(
       color: Color(0xffffffff),
       textStyle:
@@ -275,18 +304,18 @@ class AppTheme {
         BottomAppBarTheme(color: Color(0xffffffff), elevation: 2),
     tabBarTheme: TabBarTheme(
       unselectedLabelColor: Color(0xff495057),
-      labelColor: Color(0xff3d63ff),
+      labelColor: Colors.orange,
       indicatorSize: TabBarIndicatorSize.label,
       indicator: UnderlineTabIndicator(
-        borderSide: BorderSide(color: Color(0xff3d63ff), width: 2.0),
+        borderSide: BorderSide(color: Colors.orange, width: 2.0),
       ),
     ),
     sliderTheme: SliderThemeData(
-      activeTrackColor: Color(0xff3d63ff),
-      inactiveTrackColor: Color(0xff3d63ff).withAlpha(140),
+      activeTrackColor: Colors.orange,
+      inactiveTrackColor: Colors.orange.withAlpha(140),
       trackShape: RoundedRectSliderTrackShape(),
       trackHeight: 4.0,
-      thumbColor: Color(0xff3d63ff),
+      thumbColor: Colors.orange,
       thumbShape: RoundSliderThumbShape(enabledThumbRadius: 10.0),
       overlayShape: RoundSliderOverlayShape(overlayRadius: 24.0),
       tickMarkShape: RoundSliderTickMarkShape(),
@@ -297,109 +326,12 @@ class AppTheme {
       ),
     ),
   );
-  static ThemeData darkTheme = ThemeData(
-      brightness: Brightness.dark,
-      canvasColor: Colors.transparent,
-      primaryColor: Color(0xff3d63ff),
-      scaffoldBackgroundColor: Color(0xff464c52),
-      backgroundColor: Color(0xff464c52),
-      appBarTheme: AppBarTheme(
-        textTheme: darkAppBarTextTheme,
-        actionsIconTheme: IconThemeData(
-          color: Color(0xffffffff),
-        ),
-        color: Color(0xff2e343b),
-        iconTheme: IconThemeData(color: Color(0xffffffff), size: 24),
-      ),
-      colorScheme: ColorScheme.dark(
-        primary: Color(0xff3d63ff),
-        primaryVariant: Color(0xff3d63ff),
-        secondary: Color(0xff00cc77),
-        secondaryVariant: Color(0xff00cc77),
-        background: Color(0xff343a40),
-        onPrimary: Colors.white,
-        onBackground: Colors.white,
-        onSecondary: Colors.white,
-        surface: Color(0xff585e63),
-      ),
-      cardTheme: CardTheme(
-        color: Color(0xff37404a),
-        shadowColor: Color(0xff000000),
-        elevation: 1,
-        margin: EdgeInsets.all(0),
-      ),
-      iconTheme: IconThemeData(
-        color: Colors.white,
-      ),
-      textTheme: darkTextTheme,
-      indicatorColor: Colors.white,
-      disabledColor: Color(0xffa3a3a3),
-      highlightColor: Colors.white,
-      inputDecorationTheme: InputDecorationTheme(
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(4)),
-          borderSide: BorderSide(width: 1, color: Color(0xff3d63ff)),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(4)),
-          borderSide: BorderSide(width: 1, color: Colors.white70),
-        ),
-        border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(4)),
-            borderSide: BorderSide(width: 1, color: Colors.white70)),
-      ),
-      dividerColor: Color(0xffd1d1d1),
-      errorColor: Colors.orange,
-      cardColor: Color(0xff282a2b),
-      splashColor: Colors.white.withAlpha(100),
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: Color(0xff3d63ff),
-          splashColor: Colors.white.withAlpha(100),
-          highlightElevation: 8,
-          elevation: 4,
-          focusColor: Color(0xff3d63ff),
-          hoverColor: Color(0xff3d63ff),
-          foregroundColor: Colors.white),
-      accentColor: Color(0xff3d63ff),
-      popupMenuTheme: PopupMenuThemeData(
-        color: Color(0xff37404a),
-        textStyle:
-            lightTextTheme.bodyText2.merge(TextStyle(color: Color(0xffffffff))),
-      ),
-      bottomAppBarTheme:
-          BottomAppBarTheme(color: Color(0xff464c52), elevation: 2),
-      tabBarTheme: TabBarTheme(
-        unselectedLabelColor: Color(0xff495057),
-        labelColor: Color(0xff3d63ff),
-        indicatorSize: TabBarIndicatorSize.label,
-        indicator: UnderlineTabIndicator(
-          borderSide: BorderSide(color: Color(0xff3d63ff), width: 2.0),
-        ),
-      ),
-      sliderTheme: SliderThemeData(
-        activeTrackColor: Color(0xff3d63ff),
-        inactiveTrackColor: Color(0xff3d63ff).withAlpha(100),
-        trackShape: RoundedRectSliderTrackShape(),
-        trackHeight: 4.0,
-        thumbColor: Color(0xff3d63ff),
-        thumbShape: RoundSliderThumbShape(enabledThumbRadius: 10.0),
-        overlayShape: RoundSliderOverlayShape(overlayRadius: 24.0),
-        tickMarkShape: RoundSliderTickMarkShape(),
-        inactiveTickMarkColor: Colors.red[100],
-        valueIndicatorShape: PaddleSliderValueIndicatorShape(),
-        valueIndicatorTextStyle: TextStyle(
-          color: Colors.white,
-        ),
-      ),
-      cupertinoOverrideTheme: CupertinoThemeData());
 
   static ThemeData getThemeFromThemeMode(int themeMode) {
     if (themeMode == themeLight) {
-      return lightTheme;
-    } else if (themeMode == themeDark) {
-      return darkTheme;
+      return defaultTheme;
     }
-    return lightTheme;
+    return defaultTheme;
   }
 
   static NavigationBarTheme getNavigationThemeFromMode(int themeMode) {
@@ -418,10 +350,6 @@ class AppTheme {
     }
     return navigationBarTheme;
   }
-
-
-
-
 }
 
 class CustomAppTheme {
@@ -441,11 +369,12 @@ class CustomAppTheme {
       onSuccess,
       onError;
 
+  final Color groceryPrimaryColor,
+      onGroceryPrimaryColor,
+      groceryBg1,
+      groceryBg2;
 
-  final Color groceryPrimaryColor,onGroceryPrimaryColor,groceryBg1,groceryBg2;
-
-
-  final Color lightBlack,red,green,yellow,orange,blue,purple,pink,brown;
+  final Color lightBlack, red, green, yellow, orange, blue, purple, pink, brown;
 
   CustomAppTheme({
     this.bgLayer1 = const Color(0xffffffff),
@@ -472,7 +401,7 @@ class CustomAppTheme {
 
     //Color
     this.lightBlack = const Color(0xffa7a7a7),
-    this.red =const Color(0xffFF0000),
+    this.red = const Color(0xffFF0000),
     this.green = const Color(0xff008000),
     this.yellow = const Color(0xfffff44f),
     this.orange = const Color(0xffFFA500),
@@ -480,20 +409,15 @@ class CustomAppTheme {
     this.purple = const Color(0xff800080),
     this.pink = const Color(0xffFFC0CB),
     this.brown = const Color(0xffA52A2A),
-
   });
 
-
   //--------------------------------------  Custom App Theme ----------------------------------------//
-
 
   static final CustomAppTheme lightCustomAppTheme = CustomAppTheme(
     bgLayer1: Color(0xffffffff),
     bgLayer2: Color(0xfff9f9f9),
     bgLayer3: Color(0xffe8ecf4),
     bgLayer4: Color(0xffdcdee3),
-
-
     disabledColor: Color(0xff636363),
     onDisabled: Color(0xffffffff),
     colorInfo: Color(0xffff784b),
@@ -504,8 +428,8 @@ class CustomAppTheme {
     onSuccess: Color(0xffffffff),
     onWarning: Color(0xffffffff),
     colorError: Color(0xfff0323c),
-    onError: Color(0xffffffff),);
-
+    onError: Color(0xffffffff),
+  );
 
   static final CustomAppTheme darkCustomAppTheme = CustomAppTheme(
       bgLayer1: Color(0xff212429),
@@ -524,12 +448,9 @@ class CustomAppTheme {
       colorError: Color(0xfff0323c),
       onError: Color(0xffffffff),
 
-
       //Grocery Dark
       groceryBg1: Color(0xff212429),
       groceryBg2: Color(0xff282930));
-
-
 }
 
 class NavigationBarTheme {

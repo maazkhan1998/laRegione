@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/screen/AboutAppScreen.dart';
+import 'package:laregione/screen/about_app_screen.dart';
 import 'package:laregione/screen/BasicSettingScreen.dart';
 import 'package:laregione/screen/ChatHomeScreen.dart';
 import 'package:laregione/screen/FAQQuestionScreen.dart';
-import 'package:laregione/screen/HandymanProfileScreen.dart';
+import 'package:laregione/screen/profile_screen.dart';
 import 'package:laregione/screen/SocialSearchScreen.dart';
 import 'package:laregione/screen/bookMarkScreen.dart';
 import 'package:laregione/utils/SizeConfig.dart';
@@ -32,8 +32,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
               children: [
                 SizedBox(height: MySize.size60),
                 GestureDetector(
-                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) => HandymanProfileScreen())),
+                  onTap: () => Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => ProfileScreen())),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -103,48 +103,36 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
                 SizedBox(height: MySize.size10),
                 GestureDetector(
-                  onTap: ()=>Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_)=>FAQQuestionScreen()
-                    )
-                  ),
-                                  child: Text('FAQ',
+                  onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => FAQQuestionScreen())),
+                  child: Text('FAQ',
                       style: TextStyle(
                           color: themeData.colorScheme.primary,
                           fontSize: 22,
                           fontWeight: FontWeight.w500)),
                 ),
                 GestureDetector(
-                  onTap: ()=>Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_)=>AboutAppScreen()
-                    )
-                  ),
-                                  child: Text('About',
+                  onTap: () => Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => AppScreen())),
+                  child: Text('About',
                       style: TextStyle(
                           color: themeData.colorScheme.primary,
                           fontSize: 22,
                           fontWeight: FontWeight.w500)),
                 ),
                 GestureDetector(
-                  onTap: ()=>Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_)=>ChatHomeScreen()
-                    )
-                  ),
-                                  child: Text('Contact',
+                  onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => ChatHomeScreen())),
+                  child: Text('Contact',
                       style: TextStyle(
                           color: themeData.colorScheme.primary,
                           fontSize: 22,
                           fontWeight: FontWeight.w500)),
                 ),
                 GestureDetector(
-                  onTap: ()=>Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_)=>AboutAppScreen()
-                    )
-                  ),
-                                  child: Text('Privacy',
+                  onTap: () => Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => AppScreen())),
+                  child: Text('Privacy',
                       style: TextStyle(
                           color: themeData.colorScheme.primary,
                           fontSize: 22,
@@ -156,12 +144,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
                 SizedBox(height: MySize.size10),
                 GestureDetector(
-                  onTap: ()=>Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_)=>BasicSettingScreen()
-                    )
-                  ),
-                                  child: Text('Settings',
+                  onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => BasicSettingScreen())),
+                  child: Text('Settings',
                       style: TextStyle(
                           color: themeData.colorScheme.primary,
                           fontSize: 22,
