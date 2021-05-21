@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:laregione/screen/ShoppingAddCardScreen.dart';
 import 'package:laregione/utils/SizeConfig.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
@@ -132,37 +133,44 @@ class _HandymanSubscriptionScreenState extends State<HandymanSubscriptionScreen>
   }
 
   Widget subscriptionWidget({@required String title, @required String description, double value}) {
-    return Container(
-      margin: Spacing.bottom(16),
-      padding: Spacing.all(16),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(MySize.size8)),
-        border: Border.all(color: customAppTheme.bgLayer4, width: 1),
+    return GestureDetector(
+      onTap: ()=>Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_)=>ShoppingAddCardScreen()
+        )
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                title,
-                style: AppTheme.getTextStyle(themeData.textTheme.subtitle2,
-                    color: themeData.colorScheme.primary,fontWeight: 600),
-              ),
-              Text(
-                "\$" + value.toString(),
-                style: AppTheme.getTextStyle(themeData.textTheme.subtitle2,
-                    color: themeData.colorScheme.primary,fontWeight: 600),
-              ),
-            ],
-          ),
-          Text(
-            description,
-            style: AppTheme.getTextStyle(themeData.textTheme.bodyText2,
-                color: themeData.colorScheme.onBackground),
-          ),
-        ],
+          child: Container(
+        margin: Spacing.bottom(16),
+        padding: Spacing.all(16),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(MySize.size8)),
+          border: Border.all(color: customAppTheme.bgLayer4, width: 1),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  title,
+                  style: AppTheme.getTextStyle(themeData.textTheme.subtitle2,
+                      color: themeData.colorScheme.primary,fontWeight: 600),
+                ),
+                Text(
+                  "\$" + value.toString(),
+                  style: AppTheme.getTextStyle(themeData.textTheme.subtitle2,
+                      color: themeData.colorScheme.primary,fontWeight: 600),
+                ),
+              ],
+            ),
+            Text(
+              description,
+              style: AppTheme.getTextStyle(themeData.textTheme.bodyText2,
+                  color: themeData.colorScheme.onBackground),
+            ),
+          ],
+        ),
       ),
     );
   }

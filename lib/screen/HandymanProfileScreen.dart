@@ -3,7 +3,7 @@ import 'package:laregione/AppTheme.dart';
 import 'package:laregione/AppThemeNotifier.dart';
 import 'package:laregione/screen/HandymanSubscriptionScreen.dart';
 import 'package:laregione/screen/ResetPasswordScreen.dart';
-import 'package:laregione/screen/WalletHomeScreen.dart';
+import 'package:laregione/screen/ShoppingAddCardScreen.dart';
 import 'package:laregione/screen/editProfileScreen.dart';
 import 'package:laregione/utils/Generator.dart';
 import 'package:laregione/utils/SizeConfig.dart';
@@ -134,16 +134,6 @@ class _HandymanProfileScreenState extends State<HandymanProfileScreen> {
                             singleOption(
                                 option: "Subscriptions",
                                 navigation: HandymanSubscriptionScreen()),
-                            Divider(),
-                            singleOption(
-                                option: "Payment method",
-                                navigation: WalletHomeScreen()),
-                            Divider(),
-                            singleOption(
-                                option: "Favorites",
-                                navigation: FavoriteScreen(
-                                  rootContext: context,
-                                )),
                             Divider(),
                             singleOption(
                                 option: "Notification",
