@@ -1,12 +1,12 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:laregione/utils/CardMonthInputFormatter.dart';
-import 'package:laregione/utils/CardNumberInputFormatter.dart';
-import 'package:laregione/utils/SizeConfig.dart';
+import '../utils/card_month_input_formatter.dart';
+import '../utils/card_number_input_formatter.dart';
+import '../utils/SizeConfig.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import '../AppTheme.dart';
+import '../utils/AppTheme.dart';
 
 class WalletScreen extends StatefulWidget {
   @override
@@ -129,6 +129,7 @@ class _WalletScreenState extends State<WalletScreen>
         debugShowCheckedModeBanner: false,
         home: Scaffold(
             appBar: AppBar(
+              centerTitle: true,
               backgroundColor: themeData.scaffoldBackgroundColor,
               elevation: 0,
               leading: IconButton(

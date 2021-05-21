@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/AppTheme.dart';
-import 'package:laregione/screen/comment_screen.dart';
-import 'package:laregione/utils/Generator.dart';
-import 'package:laregione/utils/SizeConfig.dart';
+import 'package:laregione/models/post.dart';
+import '../utils/AppTheme.dart';
+import 'comment_screen.dart';
+import '../utils/SizeConfig.dart';
 
 class PostScreen extends StatefulWidget {
-  final String image;
+  static const String routeName = '/post';
+  final Post post;
 
-  PostScreen(this.image);
+  const PostScreen({Key key, this.post}) : super(key: key);
+
   @override
   _PostScreenState createState() => _PostScreenState();
 }
@@ -18,21 +20,21 @@ class _PostScreenState extends State<PostScreen> {
 
   Widget build(BuildContext context) {
     themeData = Theme.of(context);
-    return Padding(
-      padding: Spacing.fromLTRB(24, 40, 24, 40),
-      child: GestureDetector(
-        onTap: () => Navigator.of(context)
-            .push(MaterialPageRoute(builder: (_) => CommentScreen())),
+    return GestureDetector(
+      onTap: () => Navigator.of(context)
+          .push(MaterialPageRoute(builder: (_) => CommentScreen())),
+      child: Container(
+        color: Colors.white,
         child: Column(
           children: <Widget>[
             Container(
               decoration: BoxDecoration(
-                  color: customAppTheme.bgLayer1,
+                  color: Colors.white,
                   borderRadius:
                       BorderRadius.all(Radius.circular(MySize.size24)),
                   boxShadow: [
                     BoxShadow(
-                        color: customAppTheme.shadowColor.withAlpha(120),
+                        color: Colors.white,
                         blurRadius: MySize.size24,
                         spreadRadius: MySize.size4)
                   ]),
@@ -40,12 +42,16 @@ class _PostScreenState extends State<PostScreen> {
                 children: [
                   ClipRRect(
                     clipBehavior: Clip.antiAliasWithSaveLayer,
-                    borderRadius:
-                        BorderRadius.all(Radius.circular(MySize.size24)),
+                    // borderRadius: BorderRadius.only(
+                    //     bottomLeft: Radius.circular(MySize.size24),
+                    //     bottomRight: Radius.circular(MySize.size24)),
                     child: Hero(
-                      tag: widget.image,
+                      tag: widget.post.image,
                       child: Image(
-                        image: AssetImage(widget.image),
+                        image: AssetImage(widget.post.image),
+                        height: MediaQuery.of(context).size.height * 0.35,
+                        width: MediaQuery.of(context).size.width,
+                        fit: BoxFit.fill,
                       ),
                     ),
                   ),
@@ -54,13 +60,17 @@ class _PostScreenState extends State<PostScreen> {
                     child: Column(
                       children: [
                         Container(
+                          alignment: AlignmentDirectional.centerStart,
                           child: Text(
-                            "14 Passengers Banned By Nona Airlines After bad Behaviour",
-                            style: AppTheme.getTextStyle(
-                                themeData.textTheme.headline6,
-                                color: themeData.colorScheme.onBackground,
-                                fontWeight: 600),
+                            widget.post.title,
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
                           ),
+                        ),
+                        Divider(
+                          color: Theme.of(context).primaryColor,
+                          endIndent: 280,
+                          thickness: 3,
                         ),
                         InkWell(
                           onTap: () {},
@@ -73,8 +83,7 @@ class _PostScreenState extends State<PostScreen> {
                                   borderRadius: BorderRadius.all(
                                       Radius.circular(MySize.size14)),
                                   child: Image(
-                                    image: AssetImage(
-                                        './assets/images/avatar-2.jpg'),
+                                    image: AssetImage(widget.post.authorPhoto),
                                     height: MySize.size28,
                                     width: MySize.size28,
                                   ),
@@ -83,7 +92,7 @@ class _PostScreenState extends State<PostScreen> {
                                   width: MySize.size16,
                                 ),
                                 Text(
-                                  "John smith",
+                                  widget.post.authorName,
                                   style: AppTheme.getTextStyle(
                                       themeData.textTheme.caption,
                                       color: themeData.colorScheme.onBackground,
@@ -92,7 +101,7 @@ class _PostScreenState extends State<PostScreen> {
                                 ),
                                 Expanded(child: Container()),
                                 Text(
-                                  "10 Jan, 2020",
+                                  widget.post.date,
                                   style: AppTheme.getTextStyle(
                                       themeData.textTheme.caption,
                                       color: themeData.colorScheme.onBackground,
@@ -110,9 +119,14 @@ class _PostScreenState extends State<PostScreen> {
               ),
             ),
             Container(
-              margin: Spacing.top(24),
-              child: Text(Generator.getParagraphsText(
-                  paragraph: 4, words: 30, noOfNewLine: 2, withHyphen: false)),
+              color: Colors.white,
+              margin: Spacing.top(15),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(widget.post.text),
+              ),
+              // child: Text(Generator.getParagraphsText(
+              //     paragraph: 4, words: 30, noOfNewLine: 2, withHyphen: false)),
             ),
           ],
         ),

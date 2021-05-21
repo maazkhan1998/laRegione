@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/utils/SizeConfig.dart';
+import 'package:laregione/widget/custom_list_tile.dart';
+import '../utils/SizeConfig.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:provider/provider.dart';
 
-import '../AppTheme.dart';
+import '../utils/AppTheme.dart';
 
 class CommentScreen extends StatefulWidget {
   @override
@@ -30,19 +30,22 @@ class _CommentScreenState extends State<CommentScreen> {
                     separatorBuilder: (context, i) =>
                         SizedBox(height: MySize.size10),
                     itemCount: 4,
-                    itemBuilder: (context, i) => CustomListTile(
-                          image: 'assets/images/avatar-1.jpg',
-                          comment:
-                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-                          time: '2 hours ago',
+                    itemBuilder: (context, i) => Padding(
+                          padding: const EdgeInsets.only(top: 10.0),
+                          child: CustomListTile(
+                            image: 'assets/images/avatar-1.jpg',
+                            comment:
+                                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+                            time: '2 hours ago',
+                          ),
                         )),
               ),
               Container(
                 decoration: BoxDecoration(
-                    color: customAppTheme.bgLayer1,
+                    color: Colors.white,
                     boxShadow: [
                       BoxShadow(
-                          color: customAppTheme.shadowColor,
+                          color: Colors.grey,
                           spreadRadius: 1,
                           blurRadius: MySize.size4,
                           offset: Offset(0, MySize.size2))
@@ -64,8 +67,7 @@ class _CommentScreenState extends State<CommentScreen> {
                     ),
                     Container(
                       decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: themeData.colorScheme.primary.withAlpha(60)),
+                          shape: BoxShape.circle, color: Colors.white),
                       padding: Spacing.all(8),
                       child: Icon(
                         MdiIcons.sendOutline,
@@ -79,57 +81,6 @@ class _CommentScreenState extends State<CommentScreen> {
             ],
           ),
         )),
-      ),
-    );
-  }
-}
-
-class CustomListTile extends StatefulWidget {
-  final String image;
-  final String comment;
-  final String time;
-
-  CustomListTile(
-      {@required this.image, @required this.comment, @required this.time});
-  @override
-  _CustomListTileState createState() => _CustomListTileState();
-}
-
-class _CustomListTileState extends State<CustomListTile> {
-  ThemeData themeData;
-  @override
-  Widget build(BuildContext context) {
-    themeData = Theme.of(context);
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CircleAvatar(
-            radius: 35,
-            backgroundImage: AssetImage(widget.image),
-          ),
-          SizedBox(width: MySize.size10),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.comment,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style:
-                      TextStyle(color: Colors.black, fontSize: 16, height: 1.4),
-                ),
-                SizedBox(height: MySize.size5),
-                Text(
-                  widget.time,
-                  style: TextStyle(color: Colors.grey),
-                )
-              ],
-            ),
-          )
-        ],
       ),
     );
   }

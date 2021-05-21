@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/utils/SizeConfig.dart';
-import 'package:laregione/widget/topic_widget.dart';
-import 'package:provider/provider.dart';
+import '../utils/SizeConfig.dart';
+import '../widget/topic_widget.dart';
 
 class TopicsScreen extends StatefulWidget {
   final BuildContext rootContext;
+  static const String routeName = '/topics';
 
   const TopicsScreen({@required this.rootContext});
 
@@ -17,13 +17,7 @@ class _TopicsScreenState extends State<TopicsScreen>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   ThemeData themeData;
 
-  double findAspectRatio(double width) {
-    //Logic for aspect ratio of grid view
-    return (width / 2 - MySize.size24) / ((width / 2 - MySize.size24) + 72);
-  }
-
   Widget build(BuildContext context) {
-    themeData = Theme.of(context);
     return Scaffold(
         resizeToAvoidBottomInset: false,
         key: _scaffoldKey,

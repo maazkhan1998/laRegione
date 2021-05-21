@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/widget/my_featured_news_widget.dart';
+import 'my_featured_news_widget.dart';
 
 class NewsCarouselWidget extends StatefulWidget {
   @override

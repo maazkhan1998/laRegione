@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/widget/news_carousel_widget.dart';
-import 'package:laregione/screen/topic_screen.dart';
-import 'package:laregione/screen/favorite_screen.dart';
-import 'package:laregione/widget/custom_drawer.dart';
+import 'package:laregione/screen/search_screen.dart';
+import '../widget/news_carousel_widget.dart';
+import 'topic_screen.dart';
+import 'favorite_screen.dart';
+import '../widget/custom_drawer.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import 'bookMarkScreen.dart';
 
 class HomeScreen extends StatefulWidget {
+  static const String routeName = '/';
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -26,12 +28,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
+      //extendBodyBehindAppBar: true,
+      // appBar: AppBar(
+      //   iconTheme: IconThemeData(color: Colors.white),
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      // ),
       key: scaffoldKey,
       drawer: MyDrawerWidget(),
       backgroundColor: Colors.white,
@@ -45,9 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
             FavoriteScreen(
               rootContext: context,
             ),
-            BookMarkScreen(
-              withAppBar: false,
-            )
+            SearchScreen()
           ],
           items: [
             PersistentBottomNavBarItem(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/utils/SizeConfig.dart';
+import '../utils/SizeConfig.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import '../AppTheme.dart';
+import '../utils/AppTheme.dart';
 
 class NotificationDialog extends StatefulWidget {
   @override
@@ -10,7 +10,7 @@ class NotificationDialog extends StatefulWidget {
 }
 
 class _NotificationDialogState extends State<NotificationDialog> {
-   ThemeData themeData;
+  ThemeData themeData;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +76,8 @@ class _NotificationDialogState extends State<NotificationDialog> {
             )));
   }
 
-  Widget singleNotification({IconData iconData, @required String text, @required String time}) {
+  Widget singleNotification(
+      {IconData iconData, @required String text, @required String time}) {
     return Container(
       margin: EdgeInsets.only(bottom: MySize.size16),
       padding: EdgeInsets.only(

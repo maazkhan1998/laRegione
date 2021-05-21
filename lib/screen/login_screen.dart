@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/AppTheme.dart';
-import 'package:laregione/screen/ShoppingPasswordScreen.dart';
-import 'package:laregione/screen/register_screen.dart';
-import 'package:laregione/screen/home_screen.dart';
-import 'package:laregione/utils/SizeConfig.dart';
+import '../utils/AppTheme.dart';
+import 'reset_password_screen.dart';
+import 'register_screen.dart';
+import 'home_screen.dart';
+import '../utils/SizeConfig.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -135,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              PasswordScreen()));
+                                              ResetPasswordScreen()));
                                 },
                                 child: Text("FORGOT",
                                     style: AppTheme.getTextStyle(

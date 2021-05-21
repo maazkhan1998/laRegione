@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import '../AppTheme.dart';
+import 'AppTheme.dart';
 import 'SizeConfig.dart';
 
 class Generator {
@@ -13,7 +13,8 @@ class Generator {
   static const String _dummyText =
       "Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc. Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc";
 
-  static const String _emojiText ="😀 😃 😄 😁 😆 😅 😂 🤣 😍 🥰 😘 😠 😡 💩 👻 🧐 🤓 😎 😋 😛 😝 😜 😢 😭 😤 🥱 😴 😾";
+  static const String _emojiText =
+      "😀 😃 😄 😁 😆 😅 😂 🤣 😍 🥰 😘 😠 😡 💩 👻 🧐 🤓 😎 😋 😛 😝 😜 😢 😭 😤 🥱 😴 😾";
 
   static Widget buildRatingStar(
       {double rating = 5,
@@ -65,11 +66,12 @@ class Generator {
     return new String.fromCharCodes(codeUnits);
   }
 
-  static String getDummyText(int words, {bool withTab = false,bool withEmoji=false,withStop=true}) {
+  static String getDummyText(int words,
+      {bool withTab = false, bool withEmoji = false, withStop = true}) {
     var rand = new Random();
     List<String> dummyTexts = _dummyText.split(" ");
 
-    if(withEmoji){
+    if (withEmoji) {
       dummyTexts.addAll(_emojiText.split(" "));
     }
 
@@ -81,10 +83,10 @@ class Generator {
     text += firstWord + " ";
 
     for (int i = 1; i < words; i++) {
-        text += dummyTexts[rand.nextInt(size)] + (i==words-1? "" : " ");
+      text += dummyTexts[rand.nextInt(size)] + (i == words - 1 ? "" : " ");
     }
 
-    return text+ (withStop?".":"");
+    return text + (withStop ? "." : "");
   }
 
   static String getParagraphsText(
@@ -92,14 +94,14 @@ class Generator {
       int words = 20,
       int noOfNewLine = 1,
       bool withHyphen = false,
-      bool withEmoji=false}) {
+      bool withEmoji = false}) {
     String text = "";
     for (int i = 0; i < paragraph; i++) {
       if (withHyphen)
         text += "\t\t-\t\t";
       else
         text += "\t\t\t\t";
-      text += getDummyText(words,withEmoji: withEmoji);
+      text += getDummyText(words, withEmoji: withEmoji);
       if (i != paragraph - 1) {
         for (int j = 0; j < noOfNewLine; j++) {
           text += "\n";
@@ -187,14 +189,12 @@ class Generator {
       bool enabledOverlayBorder = false,
       Color overlayBorderColor = Colors.white,
       double overlayBorderThickness = 1,
-      double leftFraction=0.7,double topFraction=0}) {
+      double leftFraction = 0.7,
+      double topFraction = 0}) {
     double leftPlusSize = size * leftFraction;
     double topPlusSize = size * topFraction;
     double leftPosition = 0;
     double topPosition = 0;
-
-
-
 
     List<Widget> list = [];
     for (int i = 0; i < images.length; i++) {
@@ -203,10 +203,10 @@ class Generator {
           Container(
             decoration: enabledOverlayBorder
                 ? BoxDecoration(
-                border: Border.all(
-                    color: Colors.transparent,
-                    width: overlayBorderThickness),
-                shape: BoxShape.circle)
+                    border: Border.all(
+                        color: Colors.transparent,
+                        width: overlayBorderThickness),
+                    shape: BoxShape.circle)
                 : BoxDecoration(),
             child: ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(size / 2)),
@@ -245,10 +245,11 @@ class Generator {
           ),
         ));
       }
-
     }
-    double width = leftPosition+size + ((images.length)*overlayBorderThickness);
-    double height = topPosition+size + ((images.length)*overlayBorderThickness);
+    double width =
+        leftPosition + size + ((images.length) * overlayBorderThickness);
+    double height =
+        topPosition + size + ((images.length) * overlayBorderThickness);
 
     return Container(
       width: width,
@@ -257,20 +258,20 @@ class Generator {
     );
   }
 
-  static List<Color> getColorByRating(CustomAppTheme customAppTheme){
+  static List<Color> getColorByRating(CustomAppTheme customAppTheme) {
     return [
-      customAppTheme.colorError,                    //For 0 star color
-      customAppTheme.colorError,                    //For 1 star color
-      customAppTheme.colorError.withAlpha(200),     //For 2 star color
-      Generator.starColor,                     //For 3 star color
-      customAppTheme.colorSuccess.withAlpha(200),   //For 4 star color
-      customAppTheme.colorSuccess                   //For 5 star color
+      customAppTheme.colorError, //For 0 star color
+      customAppTheme.colorError, //For 1 star color
+      customAppTheme.colorError.withAlpha(200), //For 2 star color
+      Generator.starColor, //For 3 star color
+      customAppTheme.colorSuccess.withAlpha(200), //For 4 star color
+      customAppTheme.colorSuccess //For 5 star color
     ];
   }
 
   static String getRandomString(int len) {
     var random = Random.secure();
-    var values = List<int>.generate(len, (i) =>  random.nextInt(255));
+    var values = List<int>.generate(len, (i) => random.nextInt(255));
     return base64UrlEncode(values);
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/AppTheme.dart';
-import 'package:laregione/utils/Generator.dart';
-import 'package:laregione/utils/SizeConfig.dart';
+import '../utils/AppTheme.dart';
+import '../utils/Generator.dart';
+import '../utils/SizeConfig.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class ShoppingProductScreen extends StatefulWidget {

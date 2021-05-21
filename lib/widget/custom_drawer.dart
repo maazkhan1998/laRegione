@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/screen/bookMarkScreen.dart';
+import 'package:laregione/screen/profile_screen.dart';
+import '../screen/bookMarkScreen.dart';
 
 class MyDrawerWidget extends StatelessWidget {
   @override
@@ -47,10 +48,8 @@ class MyDrawerWidget extends StatelessWidget {
             ),
             ListTile(
               title: Text('Profile'),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/profile');
-              },
+              onTap: () => Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => ProfileScreen())),
             ),
             ListTile(
               title: Text('Info'),

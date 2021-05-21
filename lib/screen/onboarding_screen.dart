@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:laregione/AppTheme.dart';
-import 'package:laregione/screen/login_screen.dart';
-import 'package:laregione/utils/SizeConfig.dart';
-import 'package:laregione/utils/custom/onBoarding/CustomOnBoardingWidget.dart';
-import 'package:laregione/utils/custom/onBoarding/UI/pages.dart';
+import '../utils/AppTheme.dart';
+import 'login_screen.dart';
+import '../utils/SizeConfig.dart';
+import '../utils/custom/onBoarding/CustomOnBoardingWidget.dart';
+import '../utils/custom/onBoarding/UI/pages.dart';
 
 class OnboardingScreen extends StatefulWidget {
+  static const String routeName = '/onboarding';
   @override
   _OnboardingScreenState createState() => _OnboardingScreenState();
 }

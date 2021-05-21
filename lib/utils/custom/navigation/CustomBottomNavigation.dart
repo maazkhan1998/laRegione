@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../../../AppTheme.dart';
+import '../../AppTheme.dart';
 import '../../SizeConfig.dart';
 
 class CustomBottomNavigation extends StatelessWidget {
@@ -158,7 +158,8 @@ class _ItemWidget extends StatelessWidget {
                         style: AppTheme.getTextStyle(
                             themeData.textTheme.bodyText2,
                             color: item.activeColor,
-                            fontWeight: 700,letterSpacing: 0),
+                            fontWeight: 700,
+                            letterSpacing: 0),
                         maxLines: 1,
                         textAlign: item.textAlign,
                       ),

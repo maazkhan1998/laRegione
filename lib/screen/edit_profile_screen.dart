@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/utils/SizeConfig.dart';
+import '../utils/SizeConfig.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import '../AppTheme.dart';
+import '../utils/AppTheme.dart';
 
 class EditProfileScreen extends StatefulWidget {
   @override

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/widget/post_card_widget.dart';
+import '../../widget/post_card_widget.dart';
 
 class AuthorsSubscreen extends StatefulWidget {
   AuthorsSubscreen({Key key}) : super(key: key);

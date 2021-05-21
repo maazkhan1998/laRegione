@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/screen/notification_screen.dart';
+import '../screen/notification_screen.dart';
 
 customAppBar(BuildContext context, GlobalKey<ScaffoldState> scaffoldKey) {
   ThemeData themeData;

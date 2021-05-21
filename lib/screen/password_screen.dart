@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/utils/SizeConfig.dart';
+import '../utils/SizeConfig.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:provider/provider.dart';
 
-import '../AppTheme.dart';
+import '../utils/AppTheme.dart';
 
 class PasswordScreen extends StatefulWidget {
   @override
@@ -199,8 +198,9 @@ class _PasswordScreenState extends State<PasswordScreen> {
                             ),
                             child: ElevatedButton(
                               style: ButtonStyle(
-                                  padding: MaterialStateProperty.all(
-                                      Spacing.xy(16, 0))),
+                                padding: MaterialStateProperty.all(
+                                    Spacing.xy(16, 0)),
+                              ),
                               onPressed: () {},
                               child: Stack(
                                 clipBehavior: Clip.none,

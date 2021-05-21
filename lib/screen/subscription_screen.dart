@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:laregione/screen/wallet_screen.dart';
-import 'package:laregione/utils/SizeConfig.dart';
+import 'wallet_screen.dart';
+import '../utils/SizeConfig.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import '../AppTheme.dart';
+import '../utils/AppTheme.dart';
 
 class SubscriptionScreen extends StatefulWidget {
   @override
@@ -21,7 +21,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
             appBar: AppBar(
-              backgroundColor: customAppTheme.bgLayer1,
+              backgroundColor: AppTheme.defaultTheme.backgroundColor,
               elevation: 0,
               centerTitle: true,
               leading: InkWell(
@@ -40,7 +40,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
               ),
             ),
             body: Container(
-              color: customAppTheme.bgLayer1,
+              color: Colors.white,
               child: ListView(
                 children: [
                   Container(
@@ -49,7 +49,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                       "21",
                       style: AppTheme.getTextStyle(
                           themeData.textTheme.headline4,
-                          color: themeData.colorScheme.onBackground,
+                          color: AppTheme.defaultTheme.primaryColorDark,
                           fontWeight: 700),
                       textAlign: TextAlign.center,
                     ),
@@ -60,7 +60,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                       "Days remaining",
                       style: AppTheme.getTextStyle(
                           themeData.textTheme.bodyText2,
-                          color: themeData.colorScheme.onBackground,
+                          color: AppTheme.defaultTheme.primaryColorDark,
                           fontWeight: 500,
                           xMuted: true),
                       textAlign: TextAlign.center,
@@ -71,7 +71,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                     child: Text(
                       "RENEW SUBSCRIPTION",
                       style: AppTheme.getTextStyle(themeData.textTheme.caption,
-                          color: themeData.colorScheme.onBackground,
+                          color: AppTheme.defaultTheme.primaryColorDark,
                           fontWeight: 600,
                           muted: true),
                     ),
@@ -107,7 +107,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                                   themeData.textTheme.caption,
                                   letterSpacing: 0.4,
                                   fontWeight: 600,
-                                  color: themeData.colorScheme.onPrimary),
+                                  color: Colors.white),
                             ),
                           ),
                         )
@@ -129,7 +129,8 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
         padding: Spacing.all(16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(MySize.size8)),
-          border: Border.all(color: customAppTheme.bgLayer4, width: 1),
+          border: Border.all(
+              color: AppTheme.defaultTheme.primaryColorDark, width: 1),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -140,19 +141,23 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                 Text(
                   title,
                   style: AppTheme.getTextStyle(themeData.textTheme.subtitle2,
-                      color: themeData.colorScheme.primary, fontWeight: 600),
+                      color: AppTheme.defaultTheme.primaryColorDark,
+                      fontWeight: 600),
                 ),
                 Text(
                   "\$" + value.toString(),
                   style: AppTheme.getTextStyle(themeData.textTheme.subtitle2,
-                      color: themeData.colorScheme.primary, fontWeight: 600),
+                      color: AppTheme.defaultTheme.primaryColorDark,
+                      fontWeight: 600),
                 ),
               ],
             ),
             Text(
               description,
-              style: AppTheme.getTextStyle(themeData.textTheme.bodyText2,
-                  color: themeData.colorScheme.onBackground),
+              style: AppTheme.getTextStyle(
+                themeData.textTheme.bodyText2,
+                color: AppTheme.defaultTheme.primaryColorDark,
+              ),
             ),
           ],
         ),

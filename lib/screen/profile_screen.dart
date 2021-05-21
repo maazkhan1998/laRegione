@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/AppTheme.dart';
-import 'package:laregione/screen/subscription_screen.dart';
-import 'package:laregione/screen/password_screen.dart';
-import 'package:laregione/screen/edit_profile_screen.dart';
-import 'package:laregione/utils/Generator.dart';
-import 'package:laregione/utils/SizeConfig.dart';
-import 'package:laregione/widget/appBar.dart';
-import 'package:laregione/widget/customDrawer.dart';
+import 'package:laregione/widget/custom_drawer.dart';
+import '../utils/AppTheme.dart';
+import 'subscription_screen.dart';
+import 'password_screen.dart';
+import 'edit_profile_screen.dart';
+import '../utils/Generator.dart';
+import '../utils/SizeConfig.dart';
+import '../widget/appBar.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -27,9 +26,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         home: SafeArea(
           child: Scaffold(
               key: key,
-              drawer: CustomDrawer(),
+              drawer: MyDrawerWidget(),
               appBar: customAppBar(context, key),
-              backgroundColor: customAppTheme.bgLayer1,
+              backgroundColor: Colors.white,
               body: ListView(
                 padding: EdgeInsets.all(MySize.size24),
                 children: <Widget>[

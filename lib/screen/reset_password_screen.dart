@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/AppTheme.dart';
-import 'package:laregione/screen/home_screen.dart';
-import 'package:laregione/screen/register_screen.dart';
-import 'package:laregione/utils/SizeConfig.dart';
+import '../utils/AppTheme.dart';
+import 'home_screen.dart';
+import 'register_screen.dart';
+import '../utils/SizeConfig.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class ResetPasswordScreen extends StatefulWidget {

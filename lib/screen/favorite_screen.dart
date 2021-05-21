@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/screen/favorite_subscreens/articles_subscreen.dart';
-import 'package:laregione/screen/favorite_subscreens/authors_subscreen.dart';
-import 'package:laregione/screen/favorite_subscreens/topics_subscreen.dart';
-import 'package:laregione/utils/SizeConfig.dart';
-import 'package:laregione/widget/post_card_widget.dart';
+import 'favorite_subscreens/articles_subscreen.dart';
+import 'favorite_subscreens/authors_subscreen.dart';
+import 'favorite_subscreens/topics_subscreen.dart';
+import '../utils/SizeConfig.dart';
+import '../widget/post_card_widget.dart';
 
 class FavoriteScreen extends StatefulWidget {
   final BuildContext rootContext;
