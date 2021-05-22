@@ -42,11 +42,8 @@ class _PostScreenState extends State<PostScreen> {
                 children: [
                   ClipRRect(
                     clipBehavior: Clip.antiAliasWithSaveLayer,
-                    // borderRadius: BorderRadius.only(
-                    //     bottomLeft: Radius.circular(MySize.size24),
-                    //     bottomRight: Radius.circular(MySize.size24)),
                     child: Hero(
-                      tag: widget.post.image,
+                      tag: "article-tag",
                       child: Image(
                         image: AssetImage(widget.post.image),
                         height: MediaQuery.of(context).size.height * 0.35,

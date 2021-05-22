@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laregione/models/post.dart';
 
 import 'post_screen.dart';
 
@@ -38,8 +39,16 @@ class _BookMarkScreenState extends State<BookMarkScreen> {
           : null,
       body: ListView.builder(
         itemCount: 3,
-        //itemBuilder: (context, i) => {}
-        //PostScreen('./assets/images/all/all-l2.jpg'),
+        itemBuilder: (context, i) => PostScreen(
+          post: Post(
+              image: './assets/dummies/featured-1.jpg',
+              title: 'Test title',
+              text:
+                  'adlskfjasdgkjnasdfnasd;gkansdlfnalsdknfasdnga;lsdkfnas;ldkgnas;ldkfaspdgjasdlnfgasdjkfbwiuxbfdklfjabslkdgnaiodnf,msdabgalkdjfasd',
+              date: '20/12/21',
+              authorName: 'Philip Garcia',
+              authorPhoto: 'assets/images/avatar-1.png'),
+        ),
       ),
     );
   }

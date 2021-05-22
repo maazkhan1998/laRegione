@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:laregione/models/post.dart';
+import 'package:laregione/screen/post_screen.dart';
 
 class PostCardWidget extends StatelessWidget {
   final double elevation;
@@ -24,7 +26,16 @@ class PostCardWidget extends StatelessWidget {
       elevation: elevation,
       child: InkWell(
           onTap: () {
-            //Navigator.of(context).pushNamed(Routes.post);
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) => PostScreen(
+                      post: Post(
+                          image: this.image,
+                          title: this.title,
+                          text: this.description,
+                          date: '12/05/21',
+                          authorName: 'Arthur Melo',
+                          authorPhoto: 'assets/images/avatar-2.jpg'),
+                    )));
           },
           child: Container(
             child: Column(

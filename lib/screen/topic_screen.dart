@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laregione/screen/topic_posts_screen.dart';
 import '../utils/SizeConfig.dart';
 import '../widget/topic_widget.dart';
 
@@ -39,7 +40,14 @@ class _TopicsScreenState extends State<TopicsScreen>
                         image: 'assets/topics/technology.jpg',
                         title: "Technology",
                         description: '241 articles',
-                        onTap: () => {} //Navigator.pushNamed(
+                        onTap: () => {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (_) => TopicPostsScreen(
+                                        headerImage:
+                                            'assets/topics/technology.jpg',
+                                        topicName: "Technology",
+                                      )))
+                            } //Navigator.pushNamed(
                         //context, Routes.topicPosts)),
                         ),
                     TopicsWidget(
@@ -47,23 +55,40 @@ class _TopicsScreenState extends State<TopicsScreen>
                         image: 'assets/topics/lifestyle.jpg',
                         title: "Life Style",
                         description: '325 articles',
-                        onTap: () => {}
-                        // Navigator.pushNamed(context, Routes.topicPosts)),
-                        ),
+                        onTap: () => {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (_) => TopicPostsScreen(
+                                        headerImage:
+                                            'assets/topics/lifestyle.jpg',
+                                        topicName: "Life Style",
+                                      )))
+                            }),
                     TopicsWidget(
                         id: 3,
                         image: 'assets/topics/fashion.jpg',
                         title: "Fashion",
                         description: '784 articles',
-                        onTap: () => {}),
+                        onTap: () => {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (_) => TopicPostsScreen(
+                                        headerImage:
+                                            'assets/topics/fashion.jpg',
+                                        topicName: "Fashion",
+                                      )))
+                            }),
                     TopicsWidget(
                         id: 4,
                         image: 'assets/topics/art.jpg',
                         title: "Art",
                         description: '124 articles',
-                        onTap: () =>
-                            {} //Navigator.pushNamed(context, Routes.topicPosts)
-                        ),
+                        onTap: () => {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (_) => TopicPostsScreen(
+                                        headerImage:
+                                            'assets/topics/fashion.jpg',
+                                        topicName: "Art",
+                                      )))
+                            }),
                     //Navigator.pushNamed(context, Routes.topicPosts)),
                   ]),
             ),

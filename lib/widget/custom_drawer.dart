@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laregione/models/user.dart';
 import 'package:laregione/screen/profile_screen.dart';
 import '../screen/bookMarkScreen.dart';
 
@@ -48,8 +49,14 @@ class MyDrawerWidget extends StatelessWidget {
             ),
             ListTile(
               title: Text('Profile'),
-              onTap: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => ProfileScreen())),
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => ProfileScreen(
+                        user: User(
+                            email: 'test@test.com',
+                            password: 'yebshdbf32',
+                            userImage: './assets/images/avatar-3.jpg',
+                            userName: 'Patrick Hey'),
+                      ))),
             ),
             ListTile(
               title: Text('Info'),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laregione/models/user.dart';
 import 'package:laregione/widget/custom_drawer.dart';
 import '../utils/AppTheme.dart';
 import 'subscription_screen.dart';
@@ -10,6 +11,9 @@ import '../widget/appBar.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class ProfileScreen extends StatefulWidget {
+  final User user;
+
+  const ProfileScreen({Key key, this.user}) : super(key: key);
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
@@ -42,14 +46,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                                image:
-                                    AssetImage("./assets/images/avatar-3.jpg"),
+                                image: AssetImage(widget.user.userImage),
                                 fit: BoxFit.fill),
                           ),
                         ),
                         Container(
                           margin: EdgeInsets.only(top: MySize.size8),
-                          child: Text("Derrick Malone",
+                          child: Text(widget.user.userName,
                               style: AppTheme.getTextStyle(
                                   themeData.textTheme.subtitle1,
                                   fontWeight: 600,
@@ -83,7 +86,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               "Premium member",
                               style: AppTheme.getTextStyle(
                                   themeData.textTheme.bodyText2,
-                                  color: Generator.goldColor,
+                                  color: Colors.white,
                                   fontWeight: 600,
                                   letterSpacing: 0.2),
                             ),
