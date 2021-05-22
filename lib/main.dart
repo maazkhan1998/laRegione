@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:laregione/AppTheme.dart';
-import 'package:laregione/screen/onboarding_screen.dart';
 
 void main() {
   //You will need to initialize AppThemeNotifier class for theme changes.

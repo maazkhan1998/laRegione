@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'SingleNewsScreen.dart';
-
 class BookMarkScreen extends StatefulWidget {
   final bool withAppBar;
 
