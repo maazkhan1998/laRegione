@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/screen/about_app_screen.dart';
-import 'package:laregione/screen/BasicSettingScreen.dart';
-import 'package:laregione/screen/ChatHomeScreen.dart';
-import 'package:laregione/screen/FAQQuestionScreen.dart';
-import 'package:laregione/screen/profile_screen.dart';
-import 'package:laregione/screen/SocialSearchScreen.dart';
-import 'package:laregione/screen/bookMarkScreen.dart';
-import 'package:laregione/utils/SizeConfig.dart';
+import '../screen/about_app_screen.dart';
+import '../screen/setting_screen.dart';
+import '../screen/ChatHomeScreen.dart';
+import '../screen/FAQ_screen.dart';
+import '../screen/profile_screen.dart';
+import '../screen/SocialSearchScreen.dart';
+import '../screen/bookMarkScreen.dart';
+import '../utils/SizeConfig.dart';
 
 class CustomDrawer extends StatefulWidget {
   @override
@@ -103,8 +103,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
                 SizedBox(height: MySize.size10),
                 GestureDetector(
-                  onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => FAQQuestionScreen())),
+                  onTap: () => Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => FAQScreen())),
                   child: Text('FAQ',
                       style: TextStyle(
                           color: themeData.colorScheme.primary,
@@ -144,8 +144,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
                 SizedBox(height: MySize.size10),
                 GestureDetector(
-                  onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => BasicSettingScreen())),
+                  onTap: () => Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => SettingScreen())),
                   child: Text('Settings',
                       style: TextStyle(
                           color: themeData.colorScheme.primary,

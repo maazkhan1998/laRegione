@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:laregione/utils/SizeConfig.dart';
-import 'package:laregione/widget/appBar.dart';
-import 'package:laregione/widget/customDrawer.dart';
+import '../utils/SizeConfig.dart';
+import '../widget/appBar.dart';
+import '../widget/customDrawer.dart';
 
-import '../AppTheme.dart';
+import '../utils/AppTheme.dart';
 import 'bookMarkScreen.dart';
 
 class SocialSearchScreen extends StatefulWidget {
