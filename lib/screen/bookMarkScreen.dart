@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laregione/models/post.dart';
-
-import 'post_screen.dart';
+import 'package:laregione/screen/post_screen.dart';
 
 class BookMarkScreen extends StatefulWidget {
   final bool withAppBar;

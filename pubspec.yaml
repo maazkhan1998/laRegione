@@ -28,6 +28,7 @@ dependencies:
   google_fonts: ^2.1.0
   material_design_icons_flutter: ^4.0.5955
   persistent_bottom_nav_bar: ^4.0.2
+  http: ^0.13.3
 
 
   # The following adds the Cupertino Icons font to your application.
