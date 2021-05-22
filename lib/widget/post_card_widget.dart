@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:laregione/models/post.dart';
-import 'package:laregione/screen/post_screen.dart';
+import '../models/post.dart';
+import '../screen/post/post_screen.dart';
 
 class PostCardWidget extends StatelessWidget {
   final double elevation;

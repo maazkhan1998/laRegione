@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/models/post.dart';
-import 'package:laregione/screen/home_screen.dart';
-import 'package:laregione/screen/onboarding_screen.dart';
-import 'package:laregione/screen/post_screen.dart';
-import 'package:laregione/utils/routes.dart';
+import '../screen/info/about_us_screen.dart';
+import '../screen/info/contact_us_scren.dart';
+import '../screen/info/info_screen.dart';
+import '../models/post.dart';
+import '../screen/home/home_screen.dart';
+import '../screen/onboarding_screen.dart';
+import '../screen/post/post_screen.dart';
+import 'routes.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -11,10 +14,16 @@ class RouteGenerator {
     final args = settings.arguments;
 
     switch (settings.name) {
+      case Routes.info:
+        return MaterialPageRoute(builder: (_) => InfoScreen());
       case Routes.onboarding:
         return MaterialPageRoute(builder: (_) => OnboardingScreen());
+      case Routes.about:
+        return MaterialPageRoute(builder: (_) => AboutUsScreen());
       case Routes.home:
         return MaterialPageRoute(builder: (_) => HomeScreen());
+      case Routes.contact:
+        return MaterialPageRoute(builder: (_) => ContactUsScreen());
       case Routes.post:
         // Validation of correct data type
         if (args is Post) {

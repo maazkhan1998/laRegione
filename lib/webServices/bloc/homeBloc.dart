@@ -1,13 +1,13 @@
 import 'dart:async';
 
-import 'package:laregione/networking/api_response.dart';
-import 'package:laregione/webServices/models/authorFollowedPostModel.dart';
-import 'package:laregione/webServices/models/favoritePostModel.dart';
-import 'package:laregione/webServices/models/homePostsModel.dart';
-import 'package:laregione/webServices/models/singlePostModel.dart';
-import 'package:laregione/webServices/models/subscribedPost.dart';
-import 'package:laregione/webServices/models/topicPostModel.dart';
-import 'package:laregione/webServices/repositories/HomeRepository.dart';
+import '../../networking/api_response.dart';
+import '../models/authorFollowedPostModel.dart';
+import '../models/favoritePostModel.dart';
+import '../models/homePostsModel.dart';
+import '../models/singlePostModel.dart';
+import '../models/subscribedPost.dart';
+import '../models/topicPostModel.dart';
+import '../repositories/HomeRepository.dart';
 
 class HomeBloc {
   HomeRepository _homeRepository;

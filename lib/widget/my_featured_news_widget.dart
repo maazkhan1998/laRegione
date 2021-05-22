@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/models/post.dart';
-import 'package:laregione/screen/post_screen.dart';
+import '../models/post.dart';
+import '../screen/post/post_screen.dart';
 
 class MyFeaturedNewsWidget extends StatelessWidget {
   final String image, date, title, description;

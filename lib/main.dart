@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:laregione/screen/home_screen.dart';
-import 'package:laregione/utils/route_generator.dart';
-import 'package:laregione/utils/routes.dart';
-import 'utils/AppTheme.dart';
+import 'screen/home/home_screen.dart';
+import 'utils/route_generator.dart';
+import 'utils/routes.dart';
+import 'utils/app_theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import 'AppTheme.dart';
-import 'SizeConfig.dart';
+import 'app_theme.dart';
+import 'size_config.dart';
 
 class Generator {
   static const Color starColor = Color(0xfff9c700);
