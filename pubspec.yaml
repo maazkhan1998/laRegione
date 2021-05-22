@@ -71,6 +71,7 @@ flutter:
 
     #Illustration
     - assets/illustration/hotel/
+    - assets/illustration/shopping/
 
 
     #Icons

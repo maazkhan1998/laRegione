@@ -44,7 +44,7 @@ class PostCardWidget extends StatelessWidget {
                 Hero(
                     tag: "article-tag",
                     child: Image(
-                      image: AssetImage(image),
+                      image: NetworkImage(image),
                       height: height.toDouble(),
                       width: MediaQuery.of(context).size.width,
                       fit: BoxFit.cover,

@@ -36,7 +36,7 @@ class TopicsWidget extends StatelessWidget {
                     child: Hero(
                         tag: 'topic-tag-$id',
                         child: Image(
-                            image: AssetImage(image),
+                            image: NetworkImage(image),
                             height: 150,
                             fit: BoxFit.fitWidth))),
                 ListTile(

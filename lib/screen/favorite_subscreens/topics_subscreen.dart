@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:laregione/networking/api_response.dart';
+import 'package:laregione/screen/login_screen.dart';
+import 'package:laregione/webServices/bloc/homeBloc.dart';
+import 'package:laregione/webServices/models/subscribedPost.dart';
 import '../../widget/post_card_widget.dart';
+import '../PageNotFoundScreen.dart';
 
 class TopicsSubscreen extends StatefulWidget {
   TopicsSubscreen({Key key}) : super(key: key);
@@ -9,28 +15,64 @@ class TopicsSubscreen extends StatefulWidget {
 }
 
 class _TopicsSubscreenState extends State<TopicsSubscreen> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-          child: ListView(
+
+  HomeBloc _bloc;
+
+  initState(){
+    _bloc=HomeBloc();
+    _bloc.fetchSubscribedPosts();
+    super.initState();
+  }
+
+  buildSubscribedPosts(SubscribedPost posts){
+   return ListView(
         padding: EdgeInsets.all(0),
-        children: <Widget>[
-          Container(
+        children:List.generate(posts.data.length, (index) => 
+        Container(
             margin: EdgeInsets.only(left: 16, right: 16, top: 16),
             child: PostCardWidget(
               elevation: 3,
-              image: './assets/dummies/featured-1.jpg',
-              title: 'Topics',
+              image: posts.data[index].featuredImage,
+              title: posts.data[index].title,
               description:
-                  'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.',
+                  posts.data[index].summary,
               like: 254,
               height: 220,
               view: 563,
             ),
-          ),
-        ],
-      )),
+          ))
+      );
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+          child:StreamBuilder<ApiResponse<SubscribedPost>>(
+            stream: _bloc.subscribedPostStream,
+            builder: (context,snapshot){
+              if (snapshot.hasData) {
+                          if (!snapshot.data.isConsumed) {
+                            snapshot.data.isConsumed = true;
+                            switch (snapshot.data?.apiStatus) {
+                              case Status.LOADING:
+                                return Center(child: buildLoader);
+                                break;
+                              case Status.COMPLETED:
+
+                                return buildSubscribedPosts(snapshot.data.data);
+                                break;
+                              case Status.ERROR:
+                                Fluttertoast.showToast(
+                                    msg: snapshot.data.message);
+                                return PageNotFoundScreen();
+                                break;
+                            }
+                          }
+                        }
+                        return Center(child: buildLoader);
+            },
+          )
+           ),
     );
   }
 }

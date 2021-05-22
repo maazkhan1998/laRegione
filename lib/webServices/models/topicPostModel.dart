@@ -115,9 +115,9 @@ class Publisher {
   String username;
   String initials;
   String avatar;
-  Null about;
+  String about;
   Null darkMode;
-  int featured;
+  bool featured;
   bool isFollowed;
   String created;
   String updated;
@@ -180,7 +180,7 @@ class Topic {
   String style;
   bool visible;
   int ordering;
-  int featured;
+  bool featured;
   bool isSubscribed;
   Parent parent;
   String created;
@@ -244,7 +244,7 @@ class Parent {
   String style;
   bool visible;
   int ordering;
-  int featured;
+  bool featured;
   bool isSubscribed;
   String created;
   String updated;
@@ -297,7 +297,7 @@ class Tags {
   int id;
   String slug;
   String name;
-  Null postsCount;
+  int postsCount;
   String created;
   String updated;
 
