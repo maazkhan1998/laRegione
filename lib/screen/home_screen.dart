@@ -6,8 +6,6 @@ import 'favorite_screen.dart';
 import '../widget/custom_drawer.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
-import 'bookMarkScreen.dart';
-
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/';
   @override

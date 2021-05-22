@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:laregione/networking/api_response.dart';
 import 'package:laregione/screen/topic_posts_screen.dart';
+import 'package:laregione/webServices/bloc/homeBloc.dart';
 import '../utils/SizeConfig.dart';
 import '../widget/topic_widget.dart';
+import 'login_screen.dart';
 
 class TopicsScreen extends StatefulWidget {
   final BuildContext rootContext;
@@ -18,6 +22,14 @@ class _TopicsScreenState extends State<TopicsScreen>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   ThemeData themeData;
 
+  HomeBloc _bloc;
+
+  initState(){
+    _bloc=HomeBloc();
+    _bloc.fetchTopicPosts();
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -27,7 +39,33 @@ class _TopicsScreenState extends State<TopicsScreen>
           title: Text('Topics'),
           centerTitle: true,
         ),
-        body: ListView(
+        body:StreamBuilder(
+          stream: _bloc.topicPostStream,
+          builder: (context,snapshot){
+            if (snapshot.hasData) {
+                          if (!snapshot.data.isConsumed) {
+                            snapshot.data.isConsumed = true;
+                            switch (snapshot.data?.apiStatus) {
+                              case Status.LOADING:
+                                return Center(child: buildLoader);
+                                break;
+                              case Status.COMPLETED:
+
+                                return loginButton;
+                                break;
+                              case Status.ERROR:
+                                Fluttertoast.showToast(
+                                    msg: snapshot.data.message);
+                                return loginButton;
+                                break;
+                            }
+                          }
+                        }
+                        return Center(child: buildLoader);
+          },
+        ) 
+        
+        ListView(
           children: <Widget>[
             Container(
               child: ListView(

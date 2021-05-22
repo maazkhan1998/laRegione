@@ -9,11 +9,15 @@ import 'api_exceptions.dart';
 class ApiBaseHelper {
   final String _baseUrl = "https://api.laregione.dev/reader/";
 
+  Map<String,String> header={
+    'Accept':'application/json'
+  };
+
   Future<dynamic> get(String url) async {
     print('Api Get, url $url');
     var responseJson;
     try {
-      final response = await http.get(Uri.parse(_baseUrl + url));
+      final response = await http.get(Uri.parse(_baseUrl + url),headers:header );
       responseJson = _returnResponse(response);
     } on SocketException catch(e){
       print('No net');
@@ -27,7 +31,7 @@ class ApiBaseHelper {
     print('Api Post, url $url');
     var responseJson;
     try {
-      final response = await http.post(Uri.parse(_baseUrl + url), body: body);
+      final response = await http.post(Uri.parse(_baseUrl + url), body: body,headers: header);
       responseJson = _returnResponse(response);
     } on SocketException catch(e){
       print('No net');
@@ -41,7 +45,7 @@ class ApiBaseHelper {
     print('Api Put, url $url');
     var responseJson;
     try {
-      final response = await http.put(Uri.parse(_baseUrl + url), body: body);
+      final response = await http.put(Uri.parse(_baseUrl + url), body: body,headers: header);
       responseJson = _returnResponse(response);
     } on SocketException catch(e){
       print('No net');
@@ -56,7 +60,7 @@ class ApiBaseHelper {
     print('Api delete, url $url');
     var apiResponse;
     try {
-      final response = await http.delete(Uri.parse(_baseUrl + url));
+      final response = await http.delete(Uri.parse(_baseUrl + url),headers: header);
       apiResponse = _returnResponse(response);
     } on SocketException catch(e){
       print('No net');

@@ -1,4 +1,4 @@
-String loginURL (String email,String password)=>'login?email=$email&password=$password';
+String loginURL (String email,String password)=>'token?email=$email&password=$password&device_name=postman';
 
 String singlePostURL(String postID)=>'posts/$postID';
 

@@ -7,7 +7,7 @@ class AuthRepository {
   ApiBaseHelper _helper = ApiBaseHelper();
 
   Future<LoginResponse> userLogin(String email,String password)async{
-    final response=await _helper.get(loginURL(email,password));
+    final response=await _helper.post(loginURL(email,password),{});
     return LoginResponse.fromJson(response);
   }
 }

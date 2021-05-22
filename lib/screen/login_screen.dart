@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:laregione/networking/api_response.dart';
+import 'package:laregione/webServices/bloc/authBloc.dart';
 import '../utils/AppTheme.dart';
 import 'reset_password_screen.dart';
 import 'register_screen.dart';
@@ -13,6 +16,86 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   ThemeData themeData;
+
+  AuthBloc _bloc;
+
+  @override
+  void initState() {
+    _bloc=AuthBloc();
+    super.initState();
+  }
+
+  TextEditingController emailController=TextEditingController();
+  TextEditingController passController=TextEditingController();
+
+  Container get loginButton{
+    return Container(
+                      margin: EdgeInsets.only(
+                          left: MySize.size24,
+                          right: MySize.size24,
+                          top: MySize.size36),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(MySize.size48)),
+                          boxShadow: [
+                            BoxShadow(
+                              color:
+                                  themeData.colorScheme.primary.withAlpha(100),
+                              blurRadius: 5,
+                              offset:
+                                  Offset(0, 5), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                              padding:
+                                  MaterialStateProperty.all(Spacing.xy(16, 0))),
+                          onPressed: () {
+                            if(!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(emailController.text))
+                            return Fluttertoast.showToast(msg: 'Invalid email');
+                            if(passController.text.length<6) return Fluttertoast.showToast(msg: 'Password length must be atleast 6');
+                            _bloc.loginUser(emailController.text, passController.text);
+                          },
+                          child: Stack(
+                            clipBehavior: Clip.none,
+                            alignment: Alignment.center,
+                            children: <Widget>[
+                              Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "CONTINUE",
+                                  style: AppTheme.getTextStyle(
+                                      themeData.textTheme.bodyText2,
+                                      color: themeData.colorScheme.onPrimary,
+                                      letterSpacing: 0.8,
+                                      fontWeight: 700),
+                                ),
+                              ),
+                              Positioned(
+                                right: 16,
+                                child: ClipOval(
+                                  child: Container(
+                                    color: themeData.colorScheme.primaryVariant,
+                                    // button color
+                                    child: SizedBox(
+                                        width: MySize.size30,
+                                        height: MySize.size30,
+                                        child: Icon(
+                                          MdiIcons.arrowRight,
+                                          color:
+                                              themeData.colorScheme.onPrimary,
+                                          size: MySize.size18,
+                                        )),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,8 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             autofocus: false,
                             keyboardType: TextInputType.emailAddress,
-                            controller:
-                                TextEditingController(text: "denio@gmail.com"),
+                            controller:emailController
                           ),
                           Divider(
                             color: themeData.dividerColor,
@@ -102,6 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: <Widget>[
                               Expanded(
                                 child: TextFormField(
+                                  controller: passController,
                                   style: AppTheme.getTextStyle(
                                       themeData.textTheme.bodyText1,
                                       fontWeight: 600,
@@ -152,72 +235,36 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  Container(
-                      margin: EdgeInsets.only(
-                          left: MySize.size24,
-                          right: MySize.size24,
-                          top: MySize.size36),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(MySize.size48)),
-                          boxShadow: [
-                            BoxShadow(
-                              color:
-                                  themeData.colorScheme.primary.withAlpha(100),
-                              blurRadius: 5,
-                              offset:
-                                  Offset(0, 5), // changes position of shadow
-                            ),
-                          ],
-                        ),
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                              padding:
-                                  MaterialStateProperty.all(Spacing.xy(16, 0))),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HomeScreen()));
-                          },
-                          child: Stack(
-                            clipBehavior: Clip.none,
-                            alignment: Alignment.center,
-                            children: <Widget>[
-                              Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  "CONTINUE",
-                                  style: AppTheme.getTextStyle(
-                                      themeData.textTheme.bodyText2,
-                                      color: themeData.colorScheme.onPrimary,
-                                      letterSpacing: 0.8,
-                                      fontWeight: 700),
-                                ),
-                              ),
-                              Positioned(
-                                right: 16,
-                                child: ClipOval(
-                                  child: Container(
-                                    color: themeData.colorScheme.primaryVariant,
-                                    // button color
-                                    child: SizedBox(
-                                        width: MySize.size30,
-                                        height: MySize.size30,
-                                        child: Icon(
-                                          MdiIcons.arrowRight,
-                                          color:
-                                              themeData.colorScheme.onPrimary,
-                                          size: MySize.size18,
-                                        )),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      )),
+                  StreamBuilder(
+                    stream: _bloc.loginStream,
+                    builder: (context,snapshot){
+                      if (snapshot.hasData) {
+                          if (!snapshot.data.isConsumed) {
+                            snapshot.data.isConsumed = true;
+                            switch (snapshot.data?.apiStatus) {
+                              case Status.LOADING:
+                                return buildLoader;
+                                break;
+                              case Status.COMPLETED:
+                                Future.delayed(Duration.zero, () {
+                                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                                    builder: (_)=>HomeScreen()
+                                  ));
+                                });
+
+                                return loginButton;
+                                break;
+                              case Status.ERROR:
+                                Fluttertoast.showToast(
+                                    msg: snapshot.data.message);
+                                return loginButton;
+                                break;
+                            }
+                          }
+                        }
+                        return loginButton;
+                    },
+                  ),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -246,3 +293,9 @@ class _LoginScreenState extends State<LoginScreen> {
     ));
   }
 }
+
+CircularProgressIndicator get buildLoader {
+    return CircularProgressIndicator(
+      backgroundColor: Colors.white,
+    );
+  }
