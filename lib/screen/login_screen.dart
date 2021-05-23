@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:laregione/networking/api_response.dart';
 import 'package:laregione/webServices/bloc/authBloc.dart';
+import 'package:laregione/webServices/models/loginModel.dart';
+import 'package:laregione/webServices/webServicesConstant.dart';
 import '../utils/AppTheme.dart';
 import 'reset_password_screen.dart';
 import 'register_screen.dart';
@@ -235,7 +237,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  StreamBuilder(
+                  StreamBuilder<ApiResponse<LoginResponse>>(
                     stream: _bloc.loginStream,
                     builder: (context,snapshot){
                       if (snapshot.hasData) {
@@ -247,6 +249,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 break;
                               case Status.COMPLETED:
                                 Future.delayed(Duration.zero, () {
+                                  token=snapshot.data.data.meta.token;
                                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                                     builder: (_)=>HomeScreen()
                                   ));

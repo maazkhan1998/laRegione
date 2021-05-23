@@ -9,3 +9,5 @@ const String subscribedPostURL='me/subscribed';
 const String followedPostURL='me/followed';
 
 const String favoritePostURL='me/favorites';
+
+String token='';
