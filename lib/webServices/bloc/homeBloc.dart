@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:laregione/networking/api_response.dart';
 import 'package:laregione/webServices/models/authorFollowedPostModel.dart';
 import 'package:laregione/webServices/models/favoritePostModel.dart';
-import 'package:laregione/webServices/models/homePostsModel.dart';
 import 'package:laregione/webServices/models/singlePostModel.dart';
 import 'package:laregione/webServices/models/subscribedPost.dart';
 import 'package:laregione/webServices/models/topicPostModel.dart';
 import 'package:laregione/webServices/repositories/HomeRepository.dart';
+import '../models/homePostModel.dart';
 
 class HomeBloc{
   HomeRepository _homeRepository;

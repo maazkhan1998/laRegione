@@ -14,9 +14,12 @@ class AuthorsSubscreen extends StatefulWidget {
   _AuthorsSubscreenState createState() => _AuthorsSubscreenState();
 }
 
-class _AuthorsSubscreenState extends State<AuthorsSubscreen> {
+class _AuthorsSubscreenState extends State<AuthorsSubscreen> with AutomaticKeepAliveClientMixin {
 
   HomeBloc _bloc;
+
+  @override
+  bool get wantKeepAlive=>true;
 
   initState(){
     _bloc=HomeBloc();
@@ -30,6 +33,7 @@ class _AuthorsSubscreenState extends State<AuthorsSubscreen> {
         children:List.generate(posts.data.length,(i)=>Container(
             margin: EdgeInsets.only(left: 16, right: 16, top: 16),
             child: PostCardWidget(
+              slug: posts.data[i].slug,
               elevation: 3,
               image: posts.data[i].featuredImage,
               title: posts.data[i].title,
@@ -44,6 +48,7 @@ class _AuthorsSubscreenState extends State<AuthorsSubscreen> {
   }
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: Container(
           //color: Theme.of(context).backgroundColor,

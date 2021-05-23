@@ -8,9 +8,13 @@ class ArticlesSubscreen extends StatefulWidget {
   _ArticlesSubscreenState createState() => _ArticlesSubscreenState();
 }
 
-class _ArticlesSubscreenState extends State<ArticlesSubscreen> {
+class _ArticlesSubscreenState extends State<ArticlesSubscreen> with AutomaticKeepAliveClientMixin {
+
+  @override
+  bool get wantKeepAlive=>true;
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: Container(
           //color: Theme.of(context).backgroundColor,
@@ -20,6 +24,7 @@ class _ArticlesSubscreenState extends State<ArticlesSubscreen> {
           Container(
             margin: EdgeInsets.only(left: 16, right: 16, top: 16),
             child: PostCardWidget(
+              slug: '',
               elevation: 3,
               image: './assets/dummies/featured-1.jpg',
               title: 'Articles',

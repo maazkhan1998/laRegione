@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:laregione/models/post.dart';
+import 'package:laregione/networking/api_response.dart';
+import 'package:laregione/screen/PageNotFoundScreen.dart';
+import 'package:laregione/screen/login_screen.dart';
 import 'package:laregione/screen/post_screen.dart';
+import 'package:laregione/webServices/bloc/homeBloc.dart';
+import 'package:laregione/webServices/models/singlePostModel.dart';
 
-class MyFeaturedNewsWidget extends StatelessWidget {
-  final String image, date, title, description;
+class MyFeaturedNewsWidget extends StatefulWidget {
+  final String image, date, title, description,slug;
   final int view;
 
-  const MyFeaturedNewsWidget(
+
+
+   MyFeaturedNewsWidget(
       {Key key,
+      @required this.slug,
       @required this.image,
       @required this.date,
       @required this.title,
@@ -16,22 +25,62 @@ class MyFeaturedNewsWidget extends StatelessWidget {
       : super(key: key);
 
   @override
+  _MyFeaturedNewsWidgetState createState() => _MyFeaturedNewsWidgetState();
+}
+
+class _MyFeaturedNewsWidgetState extends State<MyFeaturedNewsWidget> {
+
+  HomeBloc _bloc;
+
+  initState(){
+    _bloc=HomeBloc();
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     //ThemeData themeData = Theme.of(context);
     return InkWell(
         onTap: () {
+          _bloc=HomeBloc();
+          _bloc.fetchSinglePost(widget.slug);
           Navigator.push(
               context,
               new MaterialPageRoute(
-                  builder: (context) => new PostScreen(
+                  builder: (context) => Scaffold(
+                    body: StreamBuilder<ApiResponse<SinglePost>>(
+                      stream: _bloc.singlePostStream,
+                      builder: (context,snapshot){
+                        if (snapshot.hasData) {
+                          if (!snapshot.data.isConsumed) {
+                            snapshot.data.isConsumed = true;
+                            switch (snapshot.data?.apiStatus) {
+                              case Status.LOADING:
+                                return Center(child: buildLoader);
+                                break;
+                              case Status.COMPLETED:
+
+                                return  PostScreen(
                         post: Post(
-                            image: image,
-                            title: title,
-                            text: description,
-                            date: date,
-                            authorName: 'test',
+                            image: snapshot.data.data.data.featuredImage,
+                            title: snapshot.data.data.data.title,
+                            text: snapshot.data.data.data.body,
+                            date: snapshot.data.data.data.publishedDate,
+                            authorName: snapshot.data.data.data.publisher.name,
                             authorPhoto: 'assets/images/avatar-2.jpg'),
-                      )));
+                      );
+                                break;
+                              case Status.ERROR:
+                                Fluttertoast.showToast(
+                                    msg: snapshot.data.message);
+                                return PageNotFoundScreen();
+                                break;
+                            }
+                          }
+                        }
+                        return Center(child: buildLoader);
+                      },
+                    ),
+                  )));
         },
         child: Container(
           padding: EdgeInsets.only(left: 0, right: 0, bottom: 16),
@@ -45,7 +94,7 @@ class MyFeaturedNewsWidget extends StatelessWidget {
                   child: Hero(
                       tag: "article-tag",
                       child: Image(
-                        image: AssetImage(image),
+                        image: NetworkImage(widget.image),
                         width: MediaQuery.of(context).size.width,
                         fit: BoxFit.cover,
                       )),
@@ -60,12 +109,12 @@ class MyFeaturedNewsWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            date,
+                            widget.date,
                           ),
                           Container(
                             margin: EdgeInsets.only(top: 0),
                             child: Text(
-                              title,
+                              widget.title,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 24,
@@ -75,7 +124,7 @@ class MyFeaturedNewsWidget extends StatelessWidget {
                           Container(
                             margin: EdgeInsets.only(top: 16),
                             child: Text(
-                              description,
+                              widget.description,
                             ),
                           ),
                         ],

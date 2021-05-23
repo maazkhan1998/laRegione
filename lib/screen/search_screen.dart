@@ -40,7 +40,6 @@ class SearchScreen extends StatelessWidget {
                                     focusedErrorBorder: InputBorder.none,
                                     isDense: true,
                                   ),
-                                  autofocus: true,
                                   maxLines: 1,
                                   textInputAction: TextInputAction.search,
                                   textCapitalization:

@@ -14,9 +14,12 @@ class TopicsSubscreen extends StatefulWidget {
   _TopicsSubscreenState createState() => _TopicsSubscreenState();
 }
 
-class _TopicsSubscreenState extends State<TopicsSubscreen> {
+class _TopicsSubscreenState extends State<TopicsSubscreen> with AutomaticKeepAliveClientMixin {
 
   HomeBloc _bloc;
+
+  @override
+  bool get wantKeepAlive=>true;
 
   initState(){
     _bloc=HomeBloc();
@@ -31,6 +34,7 @@ class _TopicsSubscreenState extends State<TopicsSubscreen> {
         Container(
             margin: EdgeInsets.only(left: 16, right: 16, top: 16),
             child: PostCardWidget(
+              slug: posts.data[index].slug,
               elevation: 3,
               image: posts.data[index].featuredImage,
               title: posts.data[index].title,
@@ -45,6 +49,7 @@ class _TopicsSubscreenState extends State<TopicsSubscreen> {
   }
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: Container(
           child:StreamBuilder<ApiResponse<SubscribedPost>>(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:laregione/screen/home_screen.dart';
+import 'package:laregione/screen/onboarding_screen.dart';
 import 'package:laregione/utils/route_generator.dart';
 import 'package:laregione/utils/routes.dart';
 import 'utils/AppTheme.dart';
@@ -24,7 +25,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.defaultTheme,
-      home: HomeScreen(),
+      home: OnboardingScreen(),
       initialRoute: Routes.onboarding,
       onGenerateRoute: RouteGenerator.generateRoute,
     );

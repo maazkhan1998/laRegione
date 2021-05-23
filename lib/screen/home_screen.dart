@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laregione/screen/search_screen.dart';
+import 'package:laregione/webServices/bloc/homeBloc.dart';
 import '../widget/news_carousel_widget.dart';
 import 'topic_screen.dart';
 import 'favorite_screen.dart';
@@ -16,9 +17,11 @@ class _HomeScreenState extends State<HomeScreen> {
   PersistentTabController _controller;
   ThemeData themeData;
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+  HomeBloc _bloc;
 
   @override
   void initState() {
+    _bloc=HomeBloc();
     _controller = PersistentTabController(initialIndex: 0);
     super.initState();
   }
@@ -82,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
           handleAndroidBackButtonPress: true, // Default is true.
           resizeToAvoidBottomInset:
               true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
-          stateManagement: false, // Default is true.
+          stateManagement: true, // Default is true.
           hideNavigationBarWhenKeyboardShows:
               true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
           decoration: NavBarDecoration(

@@ -45,7 +45,7 @@ class _PostScreenState extends State<PostScreen> {
                     child: Hero(
                       tag: "article-tag",
                       child: Image(
-                        image: AssetImage(widget.post.image),
+                        image: NetworkImage(widget.post.image),
                         height: MediaQuery.of(context).size.height * 0.35,
                         width: MediaQuery.of(context).size.width,
                         fit: BoxFit.fill,

@@ -1,12 +1,12 @@
 import 'package:laregione/networking/api_base_helper.dart';
 import 'package:laregione/webServices/models/authorFollowedPostModel.dart';
 import 'package:laregione/webServices/models/favoritePostModel.dart';
-import 'package:laregione/webServices/models/homePostsModel.dart';
 import 'package:laregione/webServices/models/singlePostModel.dart';
 import 'package:laregione/webServices/models/subscribedPost.dart';
 import 'package:laregione/webServices/models/topicPostModel.dart';
 
 import '../webServicesConstant.dart';
+import '../models/homePostModel.dart';
 
 class HomeRepository {
   ApiBaseHelper _helper = ApiBaseHelper();

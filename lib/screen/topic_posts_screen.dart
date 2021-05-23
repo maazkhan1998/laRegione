@@ -52,6 +52,7 @@ class _TopicPostsScreenState extends State<TopicPostsScreen> {
               sliver: SliverList(
                 delegate: SliverChildListDelegate([
                   PostCardWidget(
+                    slug: '',
                     elevation: 3,
                     image: './assets/dummies/featured-1.jpg',
                     title: 'At Mountain',
