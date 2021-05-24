@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../utils/Generator.dart';
 import '../utils/SizeConfig.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:provider/provider.dart';
 
 import '../utils/AppTheme.dart';
 

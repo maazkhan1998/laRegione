@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:laregione/screen/post_screen.dart';
-import 'package:laregione/webServices/bloc/homeBloc.dart';
 
 class MyFeaturedNewsWidget extends StatefulWidget {
   final String image, date, title, description,slug;
@@ -24,12 +23,7 @@ class MyFeaturedNewsWidget extends StatefulWidget {
 
 class _MyFeaturedNewsWidgetState extends State<MyFeaturedNewsWidget> {
 
-  HomeBloc _bloc;
 
-  initState(){
-    _bloc=HomeBloc();
-    super.initState();
-  }
 
   onTap(){
     Navigator.of(context).push(

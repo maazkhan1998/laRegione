@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/models/post.dart';
 import 'package:laregione/screen/post_screen.dart';
 
 class BookMarkScreen extends StatefulWidget {

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:laregione/screen/search_screen.dart';
-import 'package:laregione/webServices/bloc/homeBloc.dart';
 import '../widget/news_carousel_widget.dart';
 import 'topic_screen.dart';
 import 'favorite_screen.dart';
-import '../widget/custom_drawer.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class HomeScreen extends StatefulWidget {

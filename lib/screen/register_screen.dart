@@ -4,7 +4,6 @@ import 'home_screen.dart';
 import 'login_screen.dart';
 import '../utils/SizeConfig.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override

@@ -4,7 +4,6 @@ import 'package:flutter/rendering.dart';
 import '../utils/SizeConfig.dart';
 import '../widget/FullImageScreen.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:provider/provider.dart';
 
 import '../utils/AppTheme.dart';
 import 'MailComposeScreen.dart';

@@ -5,7 +5,6 @@ import '../utils/AppTheme.dart';
 import 'subscription_screen.dart';
 import 'password_screen.dart';
 import 'edit_profile_screen.dart';
-import '../utils/Generator.dart';
 import '../utils/SizeConfig.dart';
 import '../widget/appBar.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
