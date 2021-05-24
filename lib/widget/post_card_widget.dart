@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:laregione/models/post.dart';
-import 'package:laregione/networking/api_response.dart';
-import 'package:laregione/screen/PageNotFoundScreen.dart';
-import 'package:laregione/screen/login_screen.dart';
 import 'package:laregione/screen/post_screen.dart';
-import 'package:laregione/webServices/bloc/homeBloc.dart';
-import 'package:laregione/webServices/models/singlePostModel.dart';
 
 class PostCardWidget extends StatefulWidget {
   final double elevation;
@@ -32,11 +25,14 @@ class PostCardWidget extends StatefulWidget {
 
 class _PostCardWidgetState extends State<PostCardWidget> {
 
-  HomeBloc _bloc;
-
   initState(){
-    _bloc=HomeBloc();
     super.initState();
+  }
+
+  onTap(){
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (_)=>PostScreen(widget.slug)
+    ));
   }
   @override
   Widget build(BuildContext context) {
@@ -44,54 +40,13 @@ class _PostCardWidgetState extends State<PostCardWidget> {
       margin: EdgeInsets.all(0),
       elevation: widget.elevation,
       child: InkWell(
-          onTap: () {
-            _bloc=HomeBloc();
-            _bloc.fetchSinglePost(widget.slug);
-          Navigator.push(
-              context,
-              new MaterialPageRoute(
-                  builder: (context) => Scaffold(
-                    body: StreamBuilder<ApiResponse<SinglePost>>(
-                      stream: _bloc.singlePostStream,
-                      builder: (context,snapshot){
-                        if (snapshot.hasData) {
-                          if (!snapshot.data.isConsumed) {
-                            snapshot.data.isConsumed = true;
-                            switch (snapshot.data?.apiStatus) {
-                              case Status.LOADING:
-                                return Center(child: buildLoader);
-                                break;
-                              case Status.COMPLETED:
-
-                                return  PostScreen(
-                        post: Post(
-                            image: snapshot.data.data.data.featuredImage,
-                            title: snapshot.data.data.data.title,
-                            text: snapshot.data.data.data.body,
-                            date: snapshot.data.data.data.publishedDate,
-                            authorName: snapshot.data.data.data.publisher.name,
-                            authorPhoto: 'assets/images/avatar-2.jpg'),
-                      );
-                                break;
-                              case Status.ERROR:
-                                Fluttertoast.showToast(
-                                    msg: snapshot.data.message);
-                                return PageNotFoundScreen();
-                                break;
-                            }
-                          }
-                        }
-                        return Center(child: buildLoader);
-                      },
-                    ),
-                  )));
-          },
+          onTap: onTap,
           child: Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Hero(
-                    tag: "article-tag",
+                    tag: widget.image,
                     child: Image(
                       image: NetworkImage(widget.image),
                       height: widget.height.toDouble(),

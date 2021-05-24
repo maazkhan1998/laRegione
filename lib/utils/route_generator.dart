@@ -20,7 +20,7 @@ class RouteGenerator {
         if (args is Post) {
           return MaterialPageRoute(
             builder: (_) => PostScreen(
-              post: args,
+              ''
             ),
           );
         }

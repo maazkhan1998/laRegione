@@ -39,7 +39,7 @@ class HomeBloc{
   HomeBloc() {
     _homeRepository = HomeRepository();
     _homePostController=StreamController<ApiResponse<HomePost>>();
-    _singlePostController=StreamController<ApiResponse<SinglePost>>();
+    _singlePostController=StreamController<ApiResponse<SinglePost>>.broadcast();
     _topicPostController=StreamController<ApiResponse<TopicPost>>();
     _subscribedPostController=StreamController<ApiResponse<SubscribedPost>>();
     _followedPostController=StreamController<ApiResponse<AuthorFollowedPost>>();

@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:laregione/models/post.dart';
-import 'package:laregione/networking/api_response.dart';
-import 'package:laregione/screen/PageNotFoundScreen.dart';
-import 'package:laregione/screen/login_screen.dart';
 import 'package:laregione/screen/post_screen.dart';
 import 'package:laregione/webServices/bloc/homeBloc.dart';
-import 'package:laregione/webServices/models/singlePostModel.dart';
 
 class MyFeaturedNewsWidget extends StatefulWidget {
   final String image, date, title, description,slug;
@@ -36,52 +30,19 @@ class _MyFeaturedNewsWidgetState extends State<MyFeaturedNewsWidget> {
     _bloc=HomeBloc();
     super.initState();
   }
+
+  onTap(){
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_)=>PostScreen(widget.slug)
+      )
+    );
+  }
   @override
   Widget build(BuildContext context) {
     //ThemeData themeData = Theme.of(context);
     return InkWell(
-        onTap: () {
-          _bloc=HomeBloc();
-          _bloc.fetchSinglePost(widget.slug);
-          Navigator.push(
-              context,
-              new MaterialPageRoute(
-                  builder: (context) => Scaffold(
-                    body: StreamBuilder<ApiResponse<SinglePost>>(
-                      stream: _bloc.singlePostStream,
-                      builder: (context,snapshot){
-                        if (snapshot.hasData) {
-                          if (!snapshot.data.isConsumed) {
-                            snapshot.data.isConsumed = true;
-                            switch (snapshot.data?.apiStatus) {
-                              case Status.LOADING:
-                                return Center(child: buildLoader);
-                                break;
-                              case Status.COMPLETED:
-
-                                return  PostScreen(
-                        post: Post(
-                            image: snapshot.data.data.data.featuredImage,
-                            title: snapshot.data.data.data.title,
-                            text: snapshot.data.data.data.body,
-                            date: snapshot.data.data.data.publishedDate,
-                            authorName: snapshot.data.data.data.publisher.name,
-                            authorPhoto: 'assets/images/avatar-2.jpg'),
-                      );
-                                break;
-                              case Status.ERROR:
-                                Fluttertoast.showToast(
-                                    msg: snapshot.data.message);
-                                return PageNotFoundScreen();
-                                break;
-                            }
-                          }
-                        }
-                        return Center(child: buildLoader);
-                      },
-                    ),
-                  )));
-        },
+        onTap: onTap,
         child: Container(
           padding: EdgeInsets.only(left: 0, right: 0, bottom: 16),
           child: Card(

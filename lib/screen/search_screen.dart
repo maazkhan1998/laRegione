@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laregione/widget/custom_drawer.dart';
 
 class SearchScreen extends StatelessWidget {
   static const String routeName = '/search';
@@ -7,6 +8,7 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     return Scaffold(
+      drawer: MyDrawerWidget(),
       resizeToAvoidBottomInset: false,
       body: Padding(
         padding: new EdgeInsets.only(top: statusBarHeight),

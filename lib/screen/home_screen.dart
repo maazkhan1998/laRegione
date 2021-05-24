@@ -17,28 +17,17 @@ class _HomeScreenState extends State<HomeScreen> {
   PersistentTabController _controller;
   ThemeData themeData;
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
-  HomeBloc _bloc;
 
   @override
   void initState() {
-    _bloc=HomeBloc();
     _controller = PersistentTabController(initialIndex: 0);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      //extendBodyBehindAppBar: true,
-      // appBar: AppBar(
-      //   iconTheme: IconThemeData(color: Colors.white),
-      //   backgroundColor: Colors.transparent,
-      //   elevation: 0,
-      // ),
-      key: scaffoldKey,
-      drawer: MyDrawerWidget(),
-      backgroundColor: Colors.white,
-      body: PersistentTabView(context,
+    return 
+       PersistentTabView(context,
           controller: _controller,
           screens: [
             NewsCarouselWidget(),
@@ -107,7 +96,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           navBarStyle: NavBarStyle
               .style11 // Choose the nav bar style with this property.
-          ),
     );
   }
 }

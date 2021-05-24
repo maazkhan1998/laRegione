@@ -4,6 +4,7 @@ import 'package:laregione/networking/api_response.dart';
 import 'package:laregione/screen/PageNotFoundScreen.dart';
 import 'package:laregione/screen/login_screen.dart';
 import 'package:laregione/webServices/bloc/homeBloc.dart';
+import 'package:laregione/widget/custom_drawer.dart';
 import 'my_featured_news_widget.dart';
 
 import '../webServices/models/homePostModel.dart';
@@ -18,7 +19,7 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
 
   HomeBloc _bloc;
 
-  final int _numPages = 15;
+  int _numPages;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
 
@@ -28,15 +29,16 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
     super.initState();
   }
 
-  List<Widget> _buildPageIndicatorStatic() {
+  List<Widget> _buildPageIndicatorStatic(int pages) {
     List<Widget> list = [];
-    for (int i = 0; i < _numPages; i++) {
+    for (int i = 0; i < pages; i++) {
       list.add(i == _currentPage ? _indicator(true) : _indicator(false));
     }
     return list;
   }
 
   buildNews(HomePost posts){
+    _numPages=posts.data.articles.length;
    return StatefulBuilder(
         builder:(context,state)=> Column(
                   children:[ Expanded(
@@ -47,13 +49,28 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                     pageSnapping: true,
                     physics: ClampingScrollPhysics(),
                     controller: _pageController,
-                    onPageChanged: (int page) {
+                    onPageChanged: (i){
+                      if(i==0)_numPages=posts.data.articles.length;
+                      if(i==1)_numPages=posts.data.topics.eaque.length;
+                      if(i==2)_numPages=posts.data.topics.nihil.length;
+                      if(i==3)_numPages=posts.data.topics.velit.length;
+                      if(i==4)_numPages=posts.data.topics.officiis.length;
+                      if(i==5)_numPages=posts.data.topics.id.length;
+                      if(i==6)_numPages=posts.data.topics.qui.length;
+                      if(i==7)_numPages=posts.data.topics.eum.length;
+                      if(i==8)_numPages=posts.data.topics.eius.length;
+                      if(i==9)_numPages=posts.data.topics.ut.length;
+                      if(i==10)_numPages=posts.data.topics.eos.length;
+                      if(i==11)_numPages=posts.data.publishers.rubieJenkins.length;
+                      if(i==12)_numPages=posts.data.publishers.moseRenner.length;
+                      if(i==13)_numPages=posts.data.publishers.fidelCorkery.length;
+                      if(i==14)if(i==11)_numPages=posts.data.tags.length;
+                      state(()=>_currentPage=0);
                     },
                     children: <Widget>[
                       PageView(
                         pageSnapping: true,
                         physics: ClampingScrollPhysics(),
-                        controller: _pageController,
                         onPageChanged: (int page) {
                           state(() {
                             _currentPage = page;
@@ -72,7 +89,6 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                       PageView(
                         pageSnapping: true,
                         physics: ClampingScrollPhysics(),
-                        controller: _pageController,
                         onPageChanged: (int page) {
                           state(() {
                             _currentPage = page;
@@ -91,7 +107,6 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                       PageView(
                         pageSnapping: true,
                         physics: ClampingScrollPhysics(),
-                        controller: _pageController,
                         onPageChanged: (int page) {
                           state(() {
                             _currentPage = page;
@@ -110,7 +125,6 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                       PageView(
                         pageSnapping: true,
                         physics: ClampingScrollPhysics(),
-                        controller: _pageController,
                         onPageChanged: (int page) {
                           state(() {
                             _currentPage = page;
@@ -129,7 +143,6 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                       PageView(
                         pageSnapping: true,
                         physics: ClampingScrollPhysics(),
-                        controller: _pageController,
                         onPageChanged: (int page) {
                           state(() {
                             _currentPage = page;
@@ -148,7 +161,6 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                       PageView(
                         pageSnapping: true,
                         physics: ClampingScrollPhysics(),
-                        controller: _pageController,
                         onPageChanged: (int page) {
                           state(() {
                             _currentPage = page;
@@ -167,7 +179,6 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                       PageView(
                         pageSnapping: true,
                         physics: ClampingScrollPhysics(),
-                        controller: _pageController,
                         onPageChanged: (int page) {
                           state(() {
                             _currentPage = page;
@@ -186,7 +197,6 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                       PageView(
                         pageSnapping: true,
                         physics: ClampingScrollPhysics(),
-                        controller: _pageController,
                         onPageChanged: (int page) {
                           state(() {
                             _currentPage = page;
@@ -205,7 +215,6 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                       PageView(
                         pageSnapping: true,
                         physics: ClampingScrollPhysics(),
-                        controller: _pageController,
                         onPageChanged: (int page) {
                           state(() {
                             _currentPage = page;
@@ -224,7 +233,6 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                       PageView(
                         pageSnapping: true,
                         physics: ClampingScrollPhysics(),
-                        controller: _pageController,
                         onPageChanged: (int page) {
                           state(() {
                             _currentPage = page;
@@ -243,7 +251,6 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                       PageView(
                         pageSnapping: true,
                         physics: ClampingScrollPhysics(),
-                        controller: _pageController,
                         onPageChanged: (int page) {
                           state(() {
                             _currentPage = page;
@@ -262,7 +269,6 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                       PageView(
                         pageSnapping: true,
                         physics: ClampingScrollPhysics(),
-                        controller: _pageController,
                         onPageChanged: (int page) {
                           state(() {
                             _currentPage = page;
@@ -281,7 +287,6 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                       PageView(
                         pageSnapping: true,
                         physics: ClampingScrollPhysics(),
-                        controller: _pageController,
                         onPageChanged: (int page) {
                           state(() {
                             _currentPage = page;
@@ -300,7 +305,6 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                       PageView(
                         pageSnapping: true,
                         physics: ClampingScrollPhysics(),
-                        controller: _pageController,
                         onPageChanged: (int page) {
                           state(() {
                             _currentPage = page;
@@ -319,7 +323,6 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                       PageView(
                         pageSnapping: true,
                         physics: ClampingScrollPhysics(),
-                        controller: _pageController,
                         onPageChanged: (int page) {
                           state(() {
                             _currentPage = page;
@@ -344,7 +347,7 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
             decoration: BoxDecoration(color: Colors.white),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: _buildPageIndicatorStatic(),
+              children: _buildPageIndicatorStatic(_numPages),
             ),
           ),
                   ]
@@ -378,6 +381,7 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
   Widget build(BuildContext context) {
     themeData = Theme.of(context);
     return Scaffold(
+      drawer: MyDrawerWidget(),
       body: 
           StreamBuilder<ApiResponse<HomePost>>(
             stream: _bloc.homePostStream,

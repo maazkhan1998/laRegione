@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laregione/widget/custom_drawer.dart';
 import 'favorite_subscreens/articles_subscreen.dart';
 import 'favorite_subscreens/authors_subscreen.dart';
 import 'favorite_subscreens/topics_subscreen.dart';
@@ -30,6 +31,7 @@ class _FavoriteScreenState extends State<FavoriteScreen>
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         key: _scaffoldKey,
+        drawer: MyDrawerWidget(),
         backgroundColor: themeData.backgroundColor,
         body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {

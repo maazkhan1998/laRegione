@@ -5,6 +5,7 @@ import 'package:laregione/screen/PageNotFoundScreen.dart';
 import 'package:laregione/screen/topic_posts_screen.dart';
 import 'package:laregione/webServices/bloc/homeBloc.dart';
 import 'package:laregione/webServices/models/topicPostModel.dart';
+import 'package:laregione/widget/custom_drawer.dart';
 import '../utils/SizeConfig.dart';
 import '../widget/topic_widget.dart';
 import 'login_screen.dart';
@@ -64,6 +65,7 @@ class _TopicsScreenState extends State<TopicsScreen>
   Widget build(BuildContext context) {
     MySize().init(context);
     return Scaffold(
+      drawer: MyDrawerWidget(),
         resizeToAvoidBottomInset: false,
         key: _scaffoldKey,
         backgroundColor: Colors.grey[200],
