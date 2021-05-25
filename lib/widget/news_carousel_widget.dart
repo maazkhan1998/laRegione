@@ -40,26 +40,13 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
   buildNews(HomePost posts){
     _numPages=posts.data.articles.length;
    return StatefulBuilder(
-        builder:(context,state)=> Column(
-                  children:[ Expanded(
-                child: Container(
-                  decoration: BoxDecoration(color: Colors.white),
-                  child: PageView(
-                    scrollDirection: Axis.vertical,
-                    pageSnapping: true,
-                    physics: ClampingScrollPhysics(),
-                    controller: _pageController,
-                    onPageChanged: (i){
-                    
-                    },
-                    children: <Widget>[
-                      PageView(
+        builder:(context,state){
+          List<Widget> widgets=[];
+    widgets.add(PageView(
                         pageSnapping: true,
                         physics: ClampingScrollPhysics(),
                         onPageChanged: (int page) {
-                          state(() {
-                            _currentPage = page;
-                          });
+                          state(()=>_currentPage=page);
                         },
                         children:List.generate(posts.data.articles.length,(i)
                         => MyFeaturedNewsWidget(
@@ -70,48 +57,51 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                             description: posts.data.articles[i].summary,
                             view: 290,
                           )),
-                      ),
-                      Column(
-                          children: List.generate(posts.data.topics.length, (i) => PageView(
-                            pageSnapping: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            children: List.generate(posts.data.topics[i].length,(index)=>MyFeaturedNewsWidget(
-                            slug: posts.data.topics[i][index].slug,
-                              image: posts.data.topics[i][index].featuredImage,
-                              title: posts.data.topics[i][index].title,
-                              date: posts.data.topics[i][index].publishedDate.toString(),
-                              description: posts.data.topics[i][index].summary,
-                              view: 290,
-                            )),
-                          )),
-                        ),
-                      Column(
-                          children: List.generate(posts.data.publishers.length,(i)=>
-                          PageView(
-                            pageSnapping: true,
-        
-                            onPageChanged: (i){
+                      ));
 
-                            },
-                            children: List.generate(posts.data.publishers[i].length,(index)=>
-                            MyFeaturedNewsWidget(
-                            slug: posts.data.publishers[i][index].slug,
-                              image: posts.data.publishers[i][index].featuredImage,
-                              title: posts.data.publishers[i][index].title,
-                              date: posts.data.publishers[i][index].publishedDate.toString(),
-                              description: posts.data.publishers[i][index].summary,
-                              view: 290,
-                            )
-                            ),
-                          )),
-                        ),
-                      PageView(
+      for(int i=0;i<posts.data.topics.length;i++){
+        widgets.add(PageView(
                         pageSnapping: true,
                         physics: ClampingScrollPhysics(),
                         onPageChanged: (int page) {
-                          state(() {
-                            _currentPage = page;
-                          });
+                          state(()=>_currentPage=page);
+                        },
+                        children:List.generate(posts.data.topics[i].length,(index)
+                        => MyFeaturedNewsWidget(
+                                  slug: posts.data.topics[i][index].slug,
+                                    image: posts.data.topics[i][index].featuredImage,
+                                    title: posts.data.topics[i][index].title,
+                                    date: posts.data.topics[i][index].publishedDate.toString(),
+                                    description: posts.data.topics[i][index].summary,
+                                    view: 290,
+                                  ))),
+                      );
+      }
+
+      for(int i=0;i<posts.data.publishers.length;i++){
+        widgets.add(PageView(
+                        pageSnapping: true,
+                        physics: ClampingScrollPhysics(),
+                        onPageChanged: (int page) {
+                          state(()=>_currentPage=page);
+                        },
+                        children:List.generate(posts.data.publishers[i].length,(index)
+                        => MyFeaturedNewsWidget(
+                                  slug: posts.data.publishers[i][index].slug,
+                                    image: posts.data.publishers[i][index].featuredImage,
+                                    title: posts.data.publishers[i][index].title,
+                                    date: posts.data.publishers[i][index].publishedDate.toString(),
+                                    description: posts.data.publishers[i][index].summary,
+                                    view: 290,
+                                  ))),
+                      );
+      }
+
+      widgets.add(PageView(
+                        pageSnapping: true,
+                        physics: ClampingScrollPhysics(),
+                        onPageChanged: (int page) {
+                          state(()=>_currentPage=page);
                         },
                         children:List.generate(posts.data.tags.length,(i)
                         => MyFeaturedNewsWidget(
@@ -122,8 +112,22 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                             description: posts.data.tags[i].summary,
                             view: 290,
                           )),
-                      )
-                    ],
+                      ));
+          return Column(
+                  children:[ Expanded(
+                child: Container(
+                  decoration: BoxDecoration(color: Colors.white),
+                  child: PageView(
+                    scrollDirection: Axis.vertical,
+                    pageSnapping: true,
+                    physics: ClampingScrollPhysics(),
+                    controller: _pageController,
+                    onPageChanged: (i){
+                    state((){
+                      _currentPage=0;
+                    });
+                    },
+                    children: widgets
                   ),
                 ),
               ),
@@ -136,7 +140,7 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
             ),
           ),
                   ]
-        ),
+        );},
    );
   }
 
