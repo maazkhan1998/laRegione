@@ -15,7 +15,7 @@ class AuthBloc{
 
 
   AuthBloc() {
-    _loginController=StreamController<ApiResponse<LoginResponse>>();
+    _loginController=StreamController<ApiResponse<LoginResponse>>.broadcast();
     _authRepository = AuthRepository();
   }
 

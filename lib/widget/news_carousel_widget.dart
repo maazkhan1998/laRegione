@@ -50,22 +50,7 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                     physics: ClampingScrollPhysics(),
                     controller: _pageController,
                     onPageChanged: (i){
-                      if(i==0)_numPages=posts.data.articles.length;
-                      if(i==1)_numPages=posts.data.topics.eaque.length;
-                      if(i==2)_numPages=posts.data.topics.nihil.length;
-                      if(i==3)_numPages=posts.data.topics.velit.length;
-                      if(i==4)_numPages=posts.data.topics.officiis.length;
-                      if(i==5)_numPages=posts.data.topics.id.length;
-                      if(i==6)_numPages=posts.data.topics.qui.length;
-                      if(i==7)_numPages=posts.data.topics.eum.length;
-                      if(i==8)_numPages=posts.data.topics.eius.length;
-                      if(i==9)_numPages=posts.data.topics.ut.length;
-                      if(i==10)_numPages=posts.data.topics.eos.length;
-                      if(i==11)_numPages=posts.data.publishers.rubieJenkins.length;
-                      if(i==12)_numPages=posts.data.publishers.moseRenner.length;
-                      if(i==13)_numPages=posts.data.publishers.fidelCorkery.length;
-                      if(i==14)if(i==11)_numPages=posts.data.tags.length;
-                      state(()=>_currentPage=0);
+                    
                     },
                     children: <Widget>[
                       PageView(
@@ -86,240 +71,40 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
                             view: 290,
                           )),
                       ),
-                      PageView(
-                        pageSnapping: true,
-                        physics: ClampingScrollPhysics(),
-                        onPageChanged: (int page) {
-                          state(() {
-                            _currentPage = page;
-                          });
-                        },
-                        children:List.generate(posts.data.topics.eaque.length,(i)
-                        => MyFeaturedNewsWidget(
-                          slug: posts.data.topics.eaque[i].slug,
-                            image: posts.data.topics.eaque[i].featuredImage,
-                            title: posts.data.topics.eaque[i].title,
-                            date: posts.data.topics.eaque[i].publisher.created.toString(),
-                            description: posts.data.topics.eaque[i].summary,
-                            view: 290,
+                      Column(
+                          children: List.generate(posts.data.topics.length, (i) => PageView(
+                            pageSnapping: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            children: List.generate(posts.data.topics[i].length,(index)=>MyFeaturedNewsWidget(
+                            slug: posts.data.topics[i][index].slug,
+                              image: posts.data.topics[i][index].featuredImage,
+                              title: posts.data.topics[i][index].title,
+                              date: posts.data.topics[i][index].publishedDate.toString(),
+                              description: posts.data.topics[i][index].summary,
+                              view: 290,
+                            )),
                           )),
-                      ),
-                      PageView(
-                        pageSnapping: true,
-                        physics: ClampingScrollPhysics(),
-                        onPageChanged: (int page) {
-                          state(() {
-                            _currentPage = page;
-                          });
-                        },
-                        children:List.generate(posts.data.topics.nihil.length,(i)
-                        => MyFeaturedNewsWidget(
-                          slug:posts.data.topics.nihil[i].slug,
-                            image: posts.data.topics.nihil[i].featuredImage,
-                            title: posts.data.topics.nihil[i].title,
-                            date: posts.data.topics.nihil[i].publisher.created.toString(),
-                            description: posts.data.topics.nihil[i].summary,
-                            view: 290,
+                        ),
+                      Column(
+                          children: List.generate(posts.data.publishers.length,(i)=>
+                          PageView(
+                            pageSnapping: true,
+        
+                            onPageChanged: (i){
+
+                            },
+                            children: List.generate(posts.data.publishers[i].length,(index)=>
+                            MyFeaturedNewsWidget(
+                            slug: posts.data.publishers[i][index].slug,
+                              image: posts.data.publishers[i][index].featuredImage,
+                              title: posts.data.publishers[i][index].title,
+                              date: posts.data.publishers[i][index].publishedDate.toString(),
+                              description: posts.data.publishers[i][index].summary,
+                              view: 290,
+                            )
+                            ),
                           )),
-                      ),
-                      PageView(
-                        pageSnapping: true,
-                        physics: ClampingScrollPhysics(),
-                        onPageChanged: (int page) {
-                          state(() {
-                            _currentPage = page;
-                          });
-                        },
-                        children:List.generate(posts.data.topics.velit.length,(i)
-                        => MyFeaturedNewsWidget(
-                          slug: posts.data.topics.velit[i].slug,
-                            image: posts.data.topics.velit[i].featuredImage,
-                            title: posts.data.topics.velit[i].title,
-                            date: posts.data.topics.velit[i].publisher.created.toString(),
-                            description: posts.data.topics.velit[i].summary,
-                            view: 290,
-                          )),
-                      ),
-                      PageView(
-                        pageSnapping: true,
-                        physics: ClampingScrollPhysics(),
-                        onPageChanged: (int page) {
-                          state(() {
-                            _currentPage = page;
-                          });
-                        },
-                        children:List.generate(posts.data.topics.officiis.length,(i)
-                        => MyFeaturedNewsWidget(
-                          slug: posts.data.topics.officiis[i].slug,
-                            image: posts.data.topics.officiis[i].featuredImage,
-                            title: posts.data.topics.officiis[i].title,
-                            date: posts.data.topics.officiis[i].publisher.created.toString(),
-                            description: posts.data.topics.officiis[i].summary,
-                            view: 290,
-                          )),
-                      ),
-                      PageView(
-                        pageSnapping: true,
-                        physics: ClampingScrollPhysics(),
-                        onPageChanged: (int page) {
-                          state(() {
-                            _currentPage = page;
-                          });
-                        },
-                        children:List.generate(posts.data.topics.id.length,(i)
-                        => MyFeaturedNewsWidget(
-                          slug: posts.data.topics.id[i].slug,
-                            image: posts.data.topics.id[i].featuredImage,
-                            title: posts.data.topics.id[i].title,
-                            date: posts.data.topics.id[i].publisher.created.toString(),
-                            description: posts.data.topics.id[i].summary,
-                            view: 290,
-                          )),
-                      ),
-                      PageView(
-                        pageSnapping: true,
-                        physics: ClampingScrollPhysics(),
-                        onPageChanged: (int page) {
-                          state(() {
-                            _currentPage = page;
-                          });
-                        },
-                        children:List.generate(posts.data.topics.qui.length,(i)
-                        => MyFeaturedNewsWidget(
-                          slug: posts.data.topics.qui[i].slug,
-                            image: posts.data.topics.qui[i].featuredImage,
-                            title: posts.data.topics.qui[i].title,
-                            date: posts.data.topics.qui[i].publisher.created.toString(),
-                            description: posts.data.topics.qui[i].summary,
-                            view: 290,
-                          )),
-                      ),
-                      PageView(
-                        pageSnapping: true,
-                        physics: ClampingScrollPhysics(),
-                        onPageChanged: (int page) {
-                          state(() {
-                            _currentPage = page;
-                          });
-                        },
-                        children:List.generate(posts.data.topics.eum.length,(i)
-                        => MyFeaturedNewsWidget(
-                          slug: posts.data.topics.eum[i].slug,
-                            image: posts.data.topics.eum[i].featuredImage,
-                            title: posts.data.topics.eum[i].title,
-                            date: posts.data.topics.eum[i].publisher.created.toString(),
-                            description: posts.data.topics.eum[i].summary,
-                            view: 290,
-                          )),
-                      ),
-                      PageView(
-                        pageSnapping: true,
-                        physics: ClampingScrollPhysics(),
-                        onPageChanged: (int page) {
-                          state(() {
-                            _currentPage = page;
-                          });
-                        },
-                        children:List.generate(posts.data.topics.eius.length,(i)
-                        => MyFeaturedNewsWidget(
-                          slug: posts.data.topics.eius[i].slug,
-                            image: posts.data.topics.eius[i].featuredImage,
-                            title: posts.data.topics.eius[i].title,
-                            date: posts.data.topics.eius[i].publisher.created.toString(),
-                            description: posts.data.topics.eius[i].summary,
-                            view: 290,
-                          )),
-                      ),
-                      PageView(
-                        pageSnapping: true,
-                        physics: ClampingScrollPhysics(),
-                        onPageChanged: (int page) {
-                          state(() {
-                            _currentPage = page;
-                          });
-                        },
-                        children:List.generate(posts.data.topics.ut.length,(i)
-                        => MyFeaturedNewsWidget(
-                          slug: posts.data.topics.ut[i].slug,
-                            image: posts.data.topics.ut[i].featuredImage,
-                            title: posts.data.topics.ut[i].title,
-                            date: posts.data.topics.ut[i].publisher.created.toString(),
-                            description: posts.data.topics.ut[i].summary,
-                            view: 290,
-                          )),
-                      ),
-                      PageView(
-                        pageSnapping: true,
-                        physics: ClampingScrollPhysics(),
-                        onPageChanged: (int page) {
-                          state(() {
-                            _currentPage = page;
-                          });
-                        },
-                        children:List.generate(posts.data.topics.eos.length,(i)
-                        => MyFeaturedNewsWidget(
-                          slug: posts.data.topics.eos[i].slug,
-                            image: posts.data.topics.eos[i].featuredImage,
-                            title: posts.data.topics.eos[i].title,
-                            date: posts.data.topics.eos[i].publisher.created.toString(),
-                            description: posts.data.topics.eos[i].summary,
-                            view: 290,
-                          )),
-                      ),
-                      PageView(
-                        pageSnapping: true,
-                        physics: ClampingScrollPhysics(),
-                        onPageChanged: (int page) {
-                          state(() {
-                            _currentPage = page;
-                          });
-                        },
-                        children:List.generate(posts.data.publishers.rubieJenkins.length,(i)
-                        => MyFeaturedNewsWidget(
-                          slug: posts.data.publishers.rubieJenkins[i].slug,
-                            image: posts.data.publishers.rubieJenkins[i].featuredImage,
-                            title: posts.data.publishers.rubieJenkins[i].title,
-                            date: posts.data.publishers.rubieJenkins[i].createdAt.toString(),
-                            description: posts.data.publishers.rubieJenkins[i].summary,
-                            view: 290,
-                          )),
-                      ),
-                      PageView(
-                        pageSnapping: true,
-                        physics: ClampingScrollPhysics(),
-                        onPageChanged: (int page) {
-                          state(() {
-                            _currentPage = page;
-                          });
-                        },
-                        children:List.generate(posts.data.publishers.moseRenner.length,(i)
-                        => MyFeaturedNewsWidget(
-                          slug: posts.data.publishers.moseRenner[i].slug,
-                            image: posts.data.publishers.moseRenner[i].featuredImage,
-                            title: posts.data.publishers.moseRenner[i].title,
-                            date: posts.data.publishers.moseRenner[i].createdAt.toString(),
-                            description: posts.data.publishers.moseRenner[i].summary,
-                            view: 290,
-                          )),
-                      ),
-                      PageView(
-                        pageSnapping: true,
-                        physics: ClampingScrollPhysics(),
-                        onPageChanged: (int page) {
-                          state(() {
-                            _currentPage = page;
-                          });
-                        },
-                        children:List.generate(posts.data.publishers.fidelCorkery.length,(i)
-                        => MyFeaturedNewsWidget(
-                          slug: posts.data.publishers.fidelCorkery[i].slug,
-                            image: posts.data.publishers.fidelCorkery[i].featuredImage,
-                            title: posts.data.publishers.fidelCorkery[i].title,
-                            date: posts.data.publishers.fidelCorkery[i].createdAt.toString(),
-                            description: posts.data.publishers.fidelCorkery[i].summary,
-                            view: 290,
-                          )),
-                      ),
+                        ),
                       PageView(
                         pageSnapping: true,
                         physics: ClampingScrollPhysics(),

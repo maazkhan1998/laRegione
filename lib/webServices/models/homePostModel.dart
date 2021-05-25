@@ -33,21 +33,47 @@ class Data {
     });
 
     List<Article> articles;
-    Topics topics;
-    Publishers publishers;
+    List<List<Eaque>> topics;
+    List<List<Article>> publishers;
     List<Article> tags;
 
-    factory Data.fromJson(Map<String, dynamic> json) => Data(
+    factory Data.fromJson(Map<String, dynamic> json) { 
+
+      List<List<Eaque>> topics=[];
+      final Map<String,dynamic> topicData=json['topics'];
+      topicData.forEach((key, value) { 
+        final tempList=topicData[key] as List<dynamic>;
+        final List<Eaque> eaqueList=[];
+        tempList.forEach((element) {
+          final item=Eaque.fromJson(element);
+          eaqueList.add(item);
+        });
+        topics.add(eaqueList);
+      });
+
+      List<List<Article>> publishers=[];
+      final Map<String,dynamic> publisherData=json['publishers'];
+      publisherData.forEach((key, value) {
+        final tempList=publisherData[key] as List<dynamic>;
+        final List<Article> articleList=[];
+        tempList.forEach((element) {
+          final item=Article.fromJson(element);
+          articleList.add(item);
+        });
+        publishers.add(articleList);
+      });
+      return Data(
         articles: List<Article>.from(json["articles"].map((x) => Article.fromJson(x))),
-        topics: Topics.fromJson(json["topics"]),
-        publishers: Publishers.fromJson(json["publishers"]),
+        topics:topics,
+        publishers: publishers,
         tags: List<Article>.from(json["tags"].map((x) => Article.fromJson(x))),
     );
+    }
 
     Map<String, dynamic> toJson() => {
         "articles": List<dynamic>.from(articles.map((x) => x.toJson())),
-        "topics": topics.toJson(),
-        "publishers": publishers.toJson(),
+        "topics": List<dynamic>.from(articles.map((x) => x.toJson())),
+        "publishers": List<dynamic>.from(articles.map((x) => x.toJson())),
         "tags": List<dynamic>.from(tags.map((x) => x.toJson())),
     };
 }
@@ -428,83 +454,6 @@ class PurpleParams {
         "slug": slug,
     };
 }
-
-class Publishers {
-    Publishers({
-        this.rubieJenkins,
-        this.moseRenner,
-        this.fidelCorkery,
-    });
-
-    List<Article> rubieJenkins;
-    List<Article> moseRenner;
-    List<Article> fidelCorkery;
-
-    factory Publishers.fromJson(Map<String, dynamic> json) => Publishers(
-        rubieJenkins: List<Article>.from(json["Rubie Jenkins"].map((x) => Article.fromJson(x))),
-        moseRenner: List<Article>.from(json["Mose Renner"].map((x) => Article.fromJson(x))),
-        fidelCorkery: List<Article>.from(json["Fidel Corkery"].map((x) => Article.fromJson(x))),
-    );
-
-    Map<String, dynamic> toJson() => {
-        "Rubie Jenkins": List<dynamic>.from(rubieJenkins.map((x) => x.toJson())),
-        "Mose Renner": List<dynamic>.from(moseRenner.map((x) => x.toJson())),
-        "Fidel Corkery": List<dynamic>.from(fidelCorkery.map((x) => x.toJson())),
-    };
-}
-
-class Topics {
-    Topics({
-        this.eaque,
-        this.nihil,
-        this.velit,
-        this.officiis,
-        this.id,
-        this.qui,
-        this.eum,
-        this.eius,
-        this.ut,
-        this.eos,
-    });
-
-    List<Eaque> eaque;
-    List<Eaque> nihil;
-    List<Eaque> velit;
-    List<Eaque> officiis;
-    List<Eaque> id;
-    List<Eaque> qui;
-    List<Eaque> eum;
-    List<Eaque> eius;
-    List<Eaque> ut;
-    List<Eaque> eos;
-
-    factory Topics.fromJson(Map<String, dynamic> json) => Topics(
-        eaque: List<Eaque>.from(json["Eaque"].map((x) => Eaque.fromJson(x))),
-        nihil: List<Eaque>.from(json["Nihil"].map((x) => Eaque.fromJson(x))),
-        velit: List<Eaque>.from(json["Velit"].map((x) => Eaque.fromJson(x))),
-        officiis: List<Eaque>.from(json["Officiis"].map((x) => Eaque.fromJson(x))),
-        id: List<Eaque>.from(json["Id"].map((x) => Eaque.fromJson(x))),
-        qui: List<Eaque>.from(json["Qui"].map((x) => Eaque.fromJson(x))),
-        eum: List<Eaque>.from(json["Eum"].map((x) => Eaque.fromJson(x))),
-        eius: List<Eaque>.from(json["Eius"].map((x) => Eaque.fromJson(x))),
-        ut: List<Eaque>.from(json["Ut"].map((x) => Eaque.fromJson(x))),
-        eos: List<Eaque>.from(json["Eos"].map((x) => Eaque.fromJson(x))),
-    );
-
-    Map<String, dynamic> toJson() => {
-        "Eaque": List<dynamic>.from(eaque.map((x) => x.toJson())),
-        "Nihil": List<dynamic>.from(nihil.map((x) => x.toJson())),
-        "Velit": List<dynamic>.from(velit.map((x) => x.toJson())),
-        "Officiis": List<dynamic>.from(officiis.map((x) => x.toJson())),
-        "Id": List<dynamic>.from(id.map((x) => x.toJson())),
-        "Qui": List<dynamic>.from(qui.map((x) => x.toJson())),
-        "Eum": List<dynamic>.from(eum.map((x) => x.toJson())),
-        "Eius": List<dynamic>.from(eius.map((x) => x.toJson())),
-        "Ut": List<dynamic>.from(ut.map((x) => x.toJson())),
-        "Eos": List<dynamic>.from(eos.map((x) => x.toJson())),
-    };
-}
-
 class Eaque {
     Eaque({
         this.id,
