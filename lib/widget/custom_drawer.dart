@@ -3,7 +3,7 @@ import 'package:laregione/models/user.dart';
 import 'package:laregione/screen/profile_screen.dart';
 import '../screen/bookMarkScreen.dart';
 
-class MyDrawerWidget extends StatelessWidget {
+class CustomDrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(

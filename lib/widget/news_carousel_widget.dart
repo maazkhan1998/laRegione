@@ -177,7 +177,7 @@ class _NewsCarouselWidgetState extends State<NewsCarouselWidget> {
   Widget build(BuildContext context) {
     themeData = Theme.of(context);
     return Scaffold(
-      drawer: MyDrawerWidget(),
+      drawer: CustomDrawerWidget(),
       body: StreamBuilder<ApiResponse<HomePost>>(
         stream: _bloc.homePostStream,
         builder: (context, snapshot) {

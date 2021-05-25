@@ -24,14 +24,19 @@ class _PostScreenState extends State<PostScreen> {
 
   HomeBloc _bloc;
 
-  initState(){
-    _bloc=HomeBloc();
+  initState() {
+    _bloc = HomeBloc();
     _bloc.fetchSinglePost(widget.slug);
     super.initState();
   }
 
-  buildPost(SinglePost post){
-    return GestureDetector(
+  buildPost(SinglePost post) {
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
+      body: GestureDetector(
         onTap: () => Navigator.of(context)
             .push(MaterialPageRoute(builder: (_) => CommentScreen())),
         child: Container(
@@ -55,7 +60,7 @@ class _PostScreenState extends State<PostScreen> {
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       child: Hero(
                         tag: post.data.featuredImage,
-                                              child: Image(
+                        child: Image(
                           image: NetworkImage(post.data.featuredImage),
                           height: MediaQuery.of(context).size.height * 0.35,
                           width: MediaQuery.of(context).size.width,
@@ -91,7 +96,8 @@ class _PostScreenState extends State<PostScreen> {
                                     borderRadius: BorderRadius.all(
                                         Radius.circular(MySize.size14)),
                                     child: Image(
-                                      image: AssetImage('assets/images/avatar-2.jpg'),
+                                      image: AssetImage(
+                                          'assets/images/avatar-2.jpg'),
                                       height: MySize.size28,
                                       width: MySize.size28,
                                     ),
@@ -103,7 +109,8 @@ class _PostScreenState extends State<PostScreen> {
                                     post.data.publisher.name,
                                     style: AppTheme.getTextStyle(
                                         themeData.textTheme.caption,
-                                        color: themeData.colorScheme.onBackground,
+                                        color:
+                                            themeData.colorScheme.onBackground,
                                         fontWeight: 600,
                                         xMuted: true),
                                   ),
@@ -112,7 +119,8 @@ class _PostScreenState extends State<PostScreen> {
                                     post.data.publishedDate,
                                     style: AppTheme.getTextStyle(
                                         themeData.textTheme.caption,
-                                        color: themeData.colorScheme.onBackground,
+                                        color:
+                                            themeData.colorScheme.onBackground,
                                         fontWeight: 500,
                                         xMuted: true),
                                   ),
@@ -139,37 +147,36 @@ class _PostScreenState extends State<PostScreen> {
             ],
           ),
         ),
-      );
+      ),
+    );
   }
 
   Widget build(BuildContext context) {
     themeData = Theme.of(context);
     return Scaffold(
-          body: StreamBuilder<ApiResponse<SinglePost>>(
-            stream:_bloc.singlePostStream ,
-            builder: (context,snapshot){
-               if (snapshot.hasData) {
-                          if (!snapshot.data.isConsumed) {
-                            snapshot.data.isConsumed = true;
-                            switch (snapshot.data?.apiStatus) {
-                              case Status.LOADING:
-                                return Center(child: buildLoader);
-                                break;
-                              case Status.COMPLETED:
-
-                                return buildPost(snapshot.data.data);
-                                break;
-                              case Status.ERROR:
-                                Fluttertoast.showToast(
-                                    msg: snapshot.data.message);
-                                return PageNotFoundScreen();
-                                break;
-                            }
-                          }
-                        }
-                        return Center(child: buildLoader);
-            },
-          ) ,
+      body: StreamBuilder<ApiResponse<SinglePost>>(
+        stream: _bloc.singlePostStream,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            if (!snapshot.data.isConsumed) {
+              snapshot.data.isConsumed = true;
+              switch (snapshot.data?.apiStatus) {
+                case Status.LOADING:
+                  return Center(child: buildLoader);
+                  break;
+                case Status.COMPLETED:
+                  return buildPost(snapshot.data.data);
+                  break;
+                case Status.ERROR:
+                  Fluttertoast.showToast(msg: snapshot.data.message);
+                  return PageNotFoundScreen();
+                  break;
+              }
+            }
+          }
+          return Center(child: buildLoader);
+        },
+      ),
     );
   }
 }
