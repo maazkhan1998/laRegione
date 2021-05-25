@@ -125,7 +125,7 @@ class Article {
     EdAt createdAt;
     EdAt updatedAt;
     EdAt publishedAt;
-    PublishedDate publishedDate;
+    String publishedDate;
 
     factory Article.fromJson(Map<String, dynamic> json) => Article(
         id: json["id"],
@@ -149,7 +149,7 @@ class Article {
         createdAt: edAtValues.map[json["created_at"]],
         updatedAt: edAtValues.map[json["updated_at"]],
         publishedAt: edAtValues.map[json["published_at"]],
-        publishedDate: publishedDateValues.map[json["published_date"]],
+        publishedDate: json['published_date'],
     );
 
     Map<String, dynamic> toJson() => {
@@ -501,7 +501,7 @@ class Eaque {
     EdAt createdAt;
     EdAt updatedAt;
     EdAt publishedAt;
-    PublishedDate publishedDate;
+    String publishedDate;
 
     factory Eaque.fromJson(Map<String, dynamic> json) => Eaque(
         id: json["id"],
@@ -525,7 +525,7 @@ class Eaque {
         createdAt: edAtValues.map[json["created_at"]],
         updatedAt: edAtValues.map[json["updated_at"]],
         publishedAt: edAtValues.map[json["published_at"]],
-        publishedDate: publishedDateValues.map[json["published_date"]],
+        publishedDate: json['published_date'],
     );
 
     Map<String, dynamic> toJson() => {
