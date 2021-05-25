@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/screen/post_screen.dart';
+import '../screen/post/post_screen.dart';
 
 class MyFeaturedNewsWidget extends StatefulWidget {
-  final String image, date, title, description,slug;
+  final String image, date, title, description, slug;
   final int view;
 
-
-
-   MyFeaturedNewsWidget(
+  MyFeaturedNewsWidget(
       {Key key,
       @required this.slug,
       @required this.image,
@@ -22,16 +20,11 @@ class MyFeaturedNewsWidget extends StatefulWidget {
 }
 
 class _MyFeaturedNewsWidgetState extends State<MyFeaturedNewsWidget> {
-
-
-
-  onTap(){
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_)=>PostScreen(widget.slug)
-      )
-    );
+  onTap() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (_) => PostScreen(widget.slug)));
   }
+
   @override
   Widget build(BuildContext context) {
     //ThemeData themeData = Theme.of(context);

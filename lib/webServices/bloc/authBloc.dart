@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:laregione/networking/api_response.dart';
-import 'package:laregione/webServices/models/loginModel.dart';
-import 'package:laregione/webServices/repositories/AuthRepository.dart';
+import '../../networking/api_response.dart';
+import '../models/loginModel.dart';
+import '../repositories/AuthRepository.dart';
 
-class AuthBloc{
+class AuthBloc {
   AuthRepository _authRepository;
 
   StreamController _loginController;
@@ -13,29 +13,27 @@ class AuthBloc{
 
   Stream<ApiResponse<LoginResponse>> get loginStream => _loginController.stream;
 
-
   AuthBloc() {
-    _loginController=StreamController<ApiResponse<LoginResponse>>.broadcast();
+    _loginController = StreamController<ApiResponse<LoginResponse>>.broadcast();
     _authRepository = AuthRepository();
   }
 
-  loginUser(String email, String password)async{
+  loginUser(String email, String password) async {
     loginSink.add(ApiResponse.loading('Logging In'));
-    try{
-      LoginResponse user=await _authRepository.userLogin(email,password);
-      if(user==null) loginSink.add(ApiResponse.error('error'));
-      else{
+    try {
+      LoginResponse user = await _authRepository.userLogin(email, password);
+      if (user == null)
+        loginSink.add(ApiResponse.error('error'));
+      else {
         loginSink.add(ApiResponse.completed(user));
       }
-    }
-    catch(e){
+    } catch (e) {
       loginSink.add(ApiResponse.error(e.toString()));
       print(e);
     }
   }
 
-  dispose(){
+  dispose() {
     _loginController?.close();
   }
-
 }

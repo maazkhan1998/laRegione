@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:laregione/screen/post_screen.dart';
+import '../models/post.dart';
+import '../screen/post/post_screen.dart';
 
 class PostCardWidget extends StatefulWidget {
   final double elevation;
-  final String image, title, description,slug;
+  final String image, title, description, slug;
   final int like, view, height;
 
   const PostCardWidget(
@@ -24,16 +25,15 @@ class PostCardWidget extends StatefulWidget {
 }
 
 class _PostCardWidgetState extends State<PostCardWidget> {
-
-  initState(){
+  initState() {
     super.initState();
   }
 
-  onTap(){
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (_)=>PostScreen(widget.slug)
-    ));
+  onTap() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (_) => PostScreen(widget.slug)));
   }
+
   @override
   Widget build(BuildContext context) {
     return Card(

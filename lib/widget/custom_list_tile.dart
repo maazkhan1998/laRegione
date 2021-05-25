@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/utils/SizeConfig.dart';
+import '../utils/size_config.dart';
 
 class CustomListTile extends StatefulWidget {
   final String image;

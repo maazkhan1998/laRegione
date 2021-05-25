@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:laregione/models/user.dart';
-import 'package:laregione/screen/profile_screen.dart';
-import '../screen/bookMarkScreen.dart';
+import '../screen/topics/topic_posts_screen.dart';
+import '../models/user.dart';
+import '../screen/profile/profile_screen.dart';
 
-class CustomDrawerWidget extends StatelessWidget {
+class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -25,27 +25,34 @@ class CustomDrawerWidget extends StatelessWidget {
             ),
             ListTile(
               title: Text('Top News'),
-              onTap: () {},
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => TopicPostsScreen(
+                        headerImage: 'assets/topics/technology.jpg',
+                        topicName: "Top News",
+                      ))),
             ),
             ListTile(
                 title: Text('Latest 24 hours'),
                 onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (_) => BookMarkScreen(
-                          withAppBar: false,
+                    builder: (_) => TopicPostsScreen(
+                          headerImage: 'assets/topics/technology.jpg',
+                          topicName: "Latest 24 hours",
                         )))),
             ListTile(
               title: Text('Travel'),
               onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => BookMarkScreen(
-                        withAppBar: false,
+                  builder: (_) => TopicPostsScreen(
+                        headerImage: 'assets/topics/technology.jpg',
+                        topicName: "Travel",
                       ))),
             ),
             ListTile(
               title: Text('Publisher'),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/publisher');
-              },
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => TopicPostsScreen(
+                        headerImage: 'assets/topics/technology.jpg',
+                        topicName: "Publisher",
+                      ))),
             ),
             ListTile(
               title: Text('Profile'),
